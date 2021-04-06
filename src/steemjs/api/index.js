@@ -8,7 +8,6 @@ import types from "./types";
 import optypes from "./optypes";
 //console.log("steem_operations", steemoperations);
 
-
 class OpParam {
     constructor(op, name) {
         this.op = op;
@@ -66,8 +65,6 @@ class OpParam {
         return ret;
     }
 
-
-
     getTypeDef(type) {
         //console.log("getTypeDef of " + JSON.stringify(type));
         if (typeof type.operation_name != "undefined") {
@@ -86,7 +83,6 @@ class OpParam {
         return opSer.types[this.name];
     }
 }
-
 
 class Param {
     constructor(api, method, name) {
@@ -145,7 +141,6 @@ class Operation {
             let pname = this.paramNames[i];
             args[i] = this.params[pname].convertTyped(args[i]);
         }
-
     }
 
     execute() {
@@ -159,8 +154,6 @@ class Operation {
         //return steem.api.getDynamicGlobalPropertiesAsync();
     }
 }
-
-
 
 class Method {
 
@@ -197,7 +190,6 @@ class Method {
 class SteemApi {
 
     constructor() {
-
         this.methods = {};
         this.operations = {};
         this.importMethods();
@@ -274,52 +266,46 @@ class SteemApi {
         }
         console.log(JSON.stringify(dump, null, 4));
     }
-
 }
-
 
 SteemApi.Blockchain = {
-    LEX: "Lex",
-    Alex: "Alex",
+    Lex: "Lex",
+    Aleks: "Aleks",
     Blockchained: "Blockchained",
-    Testnet: "Testnet"
-
+    Livetest: "Livetest"
 }
 
-SteemApi.getDefaults = (blockchain = SteemApi.Blockchain.LEX) => {
+SteemApi.getDefaults = (blockchain = SteemApi.Blockchain.Lex) => {
     console.log("get defaults for", blockchain);
     switch (blockchain) {
-        case SteemApi.Blockchain.LEX:
+        case SteemApi.Blockchain.Lex:
             return {
-                ws : "wss://golos.lexai.host/ws",
-            }    
-            break;    
-        case SteemApi.Blockchain.Alex:
+                ws : "https://golos.lexai.host",
+            }
+            break;
+        case SteemApi.Blockchain.Aleks:
             return {
-                ws: "wss://api.aleksw.space/ws",
-            }    
-            break;    
+                ws : "https://api.aleksw.space",
+            }
+            break;
         case SteemApi.Blockchain.Blockchained:
             return {
-                ws : "wss://api.golos.blckchnd.com/ws",
-            }    
-            break;    
-        case SteemApi.Blockchain.Testnet:
-                return {
-                    ws : "wss://testnet.golos.today/ws",
-                }    
-                break;    
-        }
-    
+                ws : "https://api-golos.blckchnd.com",
+            }
+            break;
+        case SteemApi.Blockchain.Livetest:
+            return {
+                ws : "https://apibeta.golos.today",
+            }
+            break;
+        }    
 }
 
-
 SteemApi.setBlockchain = function (
-    ws = "wss://golos.lexa.host/ws",
+    ws = "wss://golos.lexai.host/ws",
 ) {
     steem.api.stop();
     steem.config.set('websocket', ws);
-
 }
 
 export default SteemApi;

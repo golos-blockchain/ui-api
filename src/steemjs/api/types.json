@@ -631,6 +631,25 @@
                 }
             }
         },
+        "get_accounts_balances": {
+            "desc": {
+                "en": "Returns balances for specified accounts",
+                "ru": "Возращает данные по балансам заданных аккаунтов",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "accountNames": {
+                    "type": "Array",
+                    "desc": {
+                        "en": "accounts(strings) in nested array",
+                        "ru": "имена аккаунтов (строки) в виде массива",
+                        "de": "",
+                        "es": ""
+                    }
+                }
+            }
+        },
         "get_account_references": {
             "desc": {
                 "en": "",
