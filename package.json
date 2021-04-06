@@ -2,7 +2,7 @@
   "name": "steemjsgui",
   "version": "0.1.0",
   "private": true,
-  "homepage": "/steemjs",
+  "homepage": "/",
   "dependencies": {
     "bootstrap": "^3.3.7",
     "golos-classic-js": "^0.7.99",
