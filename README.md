@@ -6,14 +6,22 @@ git clone https://github.com/golos-blockchain/golos-js-gui
 cd golos-js-gui
 ```
 
-## Manual
+## Manual run
 
 ```
 npm install
 
-npm run build
+npm build
 
-yarn global add serve
+npm install -g serve
 
-serve build
+serve -s build
+```
+
+or via pm2:
+
+```
+npm install -g pm2
+
+pm2 serve build 8080 --spa
 ```
