@@ -1,13 +1,12 @@
-import steem from "golos-classic-js"
-import methods from 'golos-classic-js/lib/api/methods'
-import operations from 'golos-classic-js/lib/broadcast/operations'
-import steemoperations from 'golos-classic-js/lib/auth/serializer/src/operations'
-import typeDefs from 'golos-classic-js/lib/auth/serializer/src/types'
-import { camelCase } from 'golos-classic-js/lib/utils';
+import steem from "golos-lib-js"
+import methods from 'golos-lib-js/lib/api/methods'
+import operations from 'golos-lib-js/lib/broadcast/operations'
+import steemoperations from 'golos-lib-js/lib/auth/serializer/src/operations'
+import typeDefs from 'golos-lib-js/lib/auth/serializer/src/types'
+import { camelCase } from 'golos-lib-js/lib/utils';
 import types from "./types";
 import optypes from "./optypes";
 //console.log("steem_operations", steemoperations);
-
 
 class OpParam {
     constructor(op, name) {
