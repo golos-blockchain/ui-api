@@ -1,17 +1,17 @@
 # Clone
 
 ```
-git clone https://github.com/golos-blockchain/golos-js-gui
+git clone https://github.com/golos-blockchain/ui-api
 
-cd golos-js-gui
+cd ui-api
 ```
 
 ## Manual run
 
 ```
-npm install
+yarn install
 
-npm build
+yarn build
 
 npm install -g serve
 

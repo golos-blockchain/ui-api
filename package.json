@@ -5,8 +5,7 @@
   "homepage": "/",
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "golos-lib-js": "^0.9.3",
-    "handlebars": "^4.1.2",
+    "golos-lib-js": "^0.9.9",
     "history": "^4.7.2",
     "lodash": "^4.17.15",
     "query-string": "^6.2.0",
@@ -15,7 +14,6 @@
     "react-dom": "^16.4.2",
     "react-flags-select": "^1.1.0",
     "react-json-pretty": "^1.6.3",
-    "react-layout-components": "^3.0.6",
     "react-router-dom": "^4.1.2"
   },
   "devDependencies": {
