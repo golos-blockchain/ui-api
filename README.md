@@ -9,11 +9,11 @@ cd golos-js-gui
 ## Manual run
 
 ```
-npm install
+yarn install
 
-npm build
+yarn build
 
-npm install -g serve
+yarn install -g serve
 
 serve -s build
 ```
@@ -21,7 +21,7 @@ serve -s build
 or via pm2:
 
 ```
-npm install -g pm2
+yarn install -g pm2
 
 pm2 serve build 8080 --spa
 ```
