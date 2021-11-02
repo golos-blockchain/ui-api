@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
-import ArrayParameter from "./ArrayParameter.js";
-import ObjectParameter from "./ObjectParameter.js";
+import ArrayParameter from "./ArrayParameter";
+import ObjectParameter from "./ObjectParameter";
 
 import {FormControl, FormGroup, ControlLabel} from "react-bootstrap";
 

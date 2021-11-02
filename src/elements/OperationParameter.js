@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import types from "../steemjs/api/types.json";
 import ParameterCss from "./Parameter.css";
 import AuthorityParameter from "./AuthorityParameter.js";
-import ObjectParameter from "./ObjectParameter.js";
+import ObjectParameter from "./ObjectParameter";
 import PublicKey from "./PublicKey.js";
 import {getDesc} from "../utils/helpers";
 

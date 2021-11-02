@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import types from "../steemjs/api/types.json";
 import ParameterCss from "./Parameter.css";
-import ArrayParameter from "./ArrayParameter.js";
-import ObjectParameter from "./ObjectParameter.js";
+import ArrayParameter from "./ArrayParameter";
+import ObjectParameter from "./ObjectParameter";
 import {getDesc, Languages} from "../utils/helpers";
 import LangSelectorCss from "./LangSelector.css";
 
