@@ -46,20 +46,22 @@ class OpParam {
             case "int16":
                 ret = parseInt(val);
                 if (isNaN(ret)) {
-                    throw this.name + " is not a number [" + val + "]";
+                    throw new Error(this.name + " is not a number [" + val + "]");
                 }
                 break;
             case "asset":
                 //check
                 if (! /^[0-9]+\.?[0-9]* [A-Za-z0-9]+$/.test(ret)) {
-                    throw this.name + ": Expecting amount like '99.000 SYMBOL', instead got '" + val + "'";
+                    throw new Error(this.name + ": Expecting amount like '99.000 SYMBOL', instead got '" + val + "'");
                 }
                 break;
             case "public_key":
                 const prefix = steem.config.get('address_prefix');
                 if (!ret.match("^" + prefix + ".*$")) {
-                    throw this.name + ": Public key has to start with " + prefix + " instead got '" + val + "'";
+                    throw new Error(this.name + ": Public key has to start with " + prefix + " instead got '" + val + "'");
                 }
+                break;
+            default:
                 break;
         }
         return ret;
@@ -73,7 +75,7 @@ class OpParam {
             return type.operation_name;
         }
         for (let td of Object.keys(typeDefs)) {
-            if (typeDefs[td] == type) {
+            if (typeDefs[td] === type) {
                 return td;
             }
         }
@@ -291,27 +293,24 @@ SteemApi.getDefaults = (blockchain = SteemApi.Blockchain.LEX) => {
             return {
                 ws: "https://golos.lexai.host",
             }
-            break;
         case SteemApi.Blockchain.Golos_id:
             return {
                 ws: "https://api-full.golos.id",
-            }
-            break;    
+            }   
         case SteemApi.Blockchain.Aleks:
             return {
                 ws: "https://api.aleksw.space",
             }
-            break;
         case SteemApi.Blockchain.Blockchained:
             return {
                 ws: "https://api-golos.blckchnd.com",
             }
-            break;
         case SteemApi.Blockchain.Livetest:
-                return {
+            return {
                 ws: "https://apibeta.golos.today",
             }
-            break;
+        default:
+            return null;
         }
 }
 

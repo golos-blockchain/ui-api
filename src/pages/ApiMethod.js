@@ -6,9 +6,9 @@ import JSONPretty from 'react-json-pretty';
 import Header from "../elements/Header";
 import queryString from "query-string";
 import JSON5 from 'json5';
-import { getDesc, setLang, getLang } from "../utils/helpers";
+import { getDesc, setLang, } from '../utils/helpers';
 
-import { Button, Panel, Well, Grid, Col, Row, Tabs, Tab, } from "react-bootstrap"
+import { Button, Panel, Grid, Col, Row, Tabs, Tab, } from 'react-bootstrap';
 
 import "./ApiMethod.css"
 
@@ -38,6 +38,7 @@ class ApiMethod extends Component {
         this.applyParameters();
     }
 
+    /* eslint-disable react/no-direct-mutation-state */
     applyParameters() {
         let urlParams = queryString.parse(this.props.location.search);
         this.state.gotParams = Object.keys(urlParams).length > 0;
@@ -53,6 +54,7 @@ class ApiMethod extends Component {
         console.log("applyParameter", this.props.location.search)
         console.log("applyParameter", this.state)
     }
+    /* eslint-enable react/no-direct-mutation-state */
 
     onSelectLang(countryCode) {
 
@@ -60,6 +62,8 @@ class ApiMethod extends Component {
         switch (countryCode) {
             case "gb":
                 countryCode = "en";
+                break;
+            default:
                 break;
         }
         setLang(countryCode);
@@ -75,7 +79,7 @@ class ApiMethod extends Component {
         let params = [];
         if (method.params) {
             for (let pname of method.paramNames) {
-                if (method.params[pname].type == "Array") {
+                if (method.params[pname].type === "Array") {
                     let value = [];
                     for (let i = 0; i < 5; i++) {
                         let pname_f = pname + "_" + i;
@@ -84,7 +88,7 @@ class ApiMethod extends Component {
                         }
                     }
                     params.push(value);
-                } else if (method.params[pname].type == "Object") {
+                } else if (method.params[pname].type === "Object") {
                     let value = this.state[pname];
                     try {
                         if(value) {
@@ -133,8 +137,6 @@ class ApiMethod extends Component {
 
     getJSCall(withoutAsync = false) {
         let methodName = this.props.match.params.method_name;
-        let apiName = this.props.match.params.api_name;
-        let method = this.steemapi.methods[apiName][methodName];
         let params = this.getParameterValues();
 
         methodName = utils.camelCase(methodName);
@@ -230,7 +232,6 @@ class ApiMethod extends Component {
     };
 
     render() {
-        const { classes } = this.props;
         let methodName = this.props.match.params.method_name;
         let apiName = this.props.match.params.api_name;
         let method = this.steemapi.methods[apiName][methodName];
@@ -243,14 +244,12 @@ class ApiMethod extends Component {
         if (this.state.result) {
             result = <JSONPretty id="json-pretty" json={this.state.result}></JSONPretty>;
         } else if (this.state.executing) {
-            result = <img src={"/steemjs02/assets/images/golosa64.gif"} />;
+            result = <img src='/steemjs02/assets/images/golosa64.gif' alt='' />;
         }
 
         if (!this.state.result && !this.state.executing && (!method.params || this.state.gotParams)) {
             this.onExecute();
         }
-
-        let resultClass = this.state.error ? "ApiMethod-error" : "ApiMethod-result";
 
         return (
             <Grid>

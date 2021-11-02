@@ -6,9 +6,6 @@ import "./Apis.css"
 
 class Apis extends Component {
 
-    constructor() {
-        super();
-    }
     getTarget(api, method) {
         return "/api/" + api + "/" + method;
     }
@@ -17,7 +14,7 @@ class Apis extends Component {
 
         let apis = Object.keys(this.props.apis);
         apis.sort((a, b) => {
-            if (a == b) return 0;
+            if (a === b) return 0;
             if (a < b) return -1;
             return 1;
         });
@@ -28,14 +25,14 @@ class Apis extends Component {
             const methods = this.props.apis[api];
             let methodNames = Object.keys(methods);
             methodNames.sort((a, b) => {
-                if (a == b) return 0;
+                if (a === b) return 0;
                 if (a < b) return -1;
                 return 1;
             });
 
-            methodNames.map(name => {
+            for (let name of methodNames) {
                 ret.push(<ListGroupItem bsClass="method-selector"><Link to={this.getTarget(api, name)}>{name}</Link></ListGroupItem>)
-            });
+            }
             return ret;
         });
 

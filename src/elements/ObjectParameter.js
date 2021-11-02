@@ -1,15 +1,6 @@
 import React, { Component } from 'react';
 import {FormControl, FormGroup, ControlLabel, HelpBlock} from "react-bootstrap";
-const styles = theme => ({
-    container: {
-      display: 'flex',
-      flexWrap: 'wrap',
-    },
-    textField: {
-      marginLeft: theme.spacing.unit,
-      marginRight: theme.spacing.unit,
-    }
-});
+
 class ObjectParameter extends Component {
     
   constructor() {
@@ -21,7 +12,6 @@ class ObjectParameter extends Component {
   onChange(event) {
     const target = event.target;
     const value = target.value;
-    const name = target.name;      
     
     try {
         this.props.onChange(event);
@@ -36,10 +26,9 @@ class ObjectParameter extends Component {
   
   render() {
     
-    let paramValues = this.props.paramValues;
     let getValue = this.props.getValue;
     
-    let {classes, param} = this.props;
+    let { param, } = this.props;
     
     let error = null;
     if(this.state.error) {

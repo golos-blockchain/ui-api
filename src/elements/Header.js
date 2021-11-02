@@ -2,35 +2,8 @@ import React, { Component } from 'react';
 import SteemApi from "../steemjs/api";
 import "./Header.css";
 import 'react-flags-select/css/react-flags-select.css';
-import ReactFlagsSelect from "react-flags-select";
 
-import {PageHeader, Navbar, Nav, NavItem, NavDropdown, MenuItem, FormGroup, Glyphicon, FormControl} from "react-bootstrap";
-
-const styles = theme => ({
-    root: {
-      flexGrow: 1,
-    },
-    flex: {
-      flexGrow: 1,
-    },
-    menuButton: {
-        width: "150px",
-    },
-    ws_input: {
-        color: "#fff"
-    },
-    ws_root: {
-        color: "inherit"
-    },    
-    ws_focused: {
-
-    },
-    icon: {
-        color: "#fff"
-    },
-
-});
-  
+import { Navbar, FormGroup, Glyphicon, FormControl, } from 'react-bootstrap';
 
 class Header extends Component {
 
@@ -59,7 +32,7 @@ class Header extends Component {
         let newState = {
             [name]: value
         }
-        if (name == "blockchain") {
+        if (name === 'blockchain') {
             const defaults = SteemApi.getDefaults(value);
             console.log("got defaults", defaults);
             Object.assign(newState, defaults);
@@ -98,7 +71,6 @@ class Header extends Component {
 
     render() {
         console.log("props & stats", this.props, this.state);
-        const {classes} = this.props;
         console.log("state.blockchain", this.state.blockchain);
         return (
             <Navbar inverse>
@@ -118,7 +90,7 @@ class Header extends Component {
                         <FormGroup>
                         <FormControl onChange={(ev) => this.onChangeBlockchain(ev.target.value)} componentClass="select" placeholder={this.state.blockchain}>
                             {Object.keys(SteemApi.Blockchain).map(node => 
-                                <option selected={SteemApi.Blockchain[node] == this.state.blockchain} value={SteemApi.Blockchain[node]}>{SteemApi.Blockchain[node]}</option>
+                                <option selected={SteemApi.Blockchain[node] === this.state.blockchain} value={SteemApi.Blockchain[node]}>{SteemApi.Blockchain[node]}</option>
                             )}
                         </FormControl>  
                         </FormGroup>{' '}

@@ -1,13 +1,8 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
 import Parameter from './Parameter'
 
 class ApiMethodParameters extends Component {
-    
-  constructor() {
-      super();
-  }  
-    
+
   render() {
     
     let method = this.props.method;
