@@ -48,6 +48,25 @@
         }
     },
     "tags": {
+        "get_tags": {
+            "desc": {
+                "en": "Returns a list of tags (their data) by their names (e.g. \"ru--golos\")",
+                "ru": "",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "tags": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
+                }
+            }
+        },
         "get_trending_tags": {
             "desc": {
                 "en": "Returns a list of tags (tags) that include word combinations",
@@ -143,6 +162,25 @@
             "desc": {
                 "en": "Displays a limited number of publications, starting with the newest one.",
                 "ru": "Отображает ограниченное количество публикаций начиная с самой новой.",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "query": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
+                }
+            }
+        },
+        "get_discussions_by_donates": {
+            "desc": {
+                "en": "Displays a limited number of publications, starting with the most donated one.",
+                "ru": "",
                 "de": "",
                 "es": ""
             },
@@ -389,165 +427,6 @@
                 }
             }
         },
-        "get_ops_in_block": {
-            "desc": {
-                "en": "Returns all operations in the block, if the parameter 'onlyVirtual' is true, then returns only the virtual operations",
-                "ru": "Возвращает все операции в блоке, если параметр 'onlyVirtual' true то возвращает только виртуальные операции",
-                "de": "",
-                "es": ""
-            },
-            "params": {
-                "blockNum": {
-                    "type": "Integer",
-                    "desc": {
-                        "en": "block number",
-                        "ru": "номер блока",
-                        "de": "",
-                        "es": ""
-                    }
-                },
-                "onlyVirtual": {
-                    "type": "Boolean",
-                    "desc": {
-                        "en": "show only virtual operations",
-                        "ru": "показывать только виртуальные операции",
-                        "de": "",
-                        "es": ""
-                    }
-                }
-            }
-        },
-        "get_state": {
-            "desc": {
-                "en": "Displays the current network status.",
-                "ru": "Отображает текущее состояние сети.",
-                "de": "",
-                "es": ""
-            },
-            "params": {
-                "path": {
-                    "type": "String",
-                    "desc": {
-                        "en": "",
-                        "ru": "",
-                        "de": "",
-                        "es": ""
-                    }
-                }
-            }
-        },
-        "get_trending_categories": {
-            "desc": {
-                "en": "Returns sorted by value tags starting with a given or similar to it.",
-                "ru": "Возвращает отсортированные по стоимости тэги начиная с заданного или близко к нему похожего.",
-                "de": "",
-                "es": ""
-            },
-            "params": {
-                "after": {
-                    "type": "String",
-                    "desc": {
-                        "en": "phrase for search, may be empty",
-                        "ru": "словосочетание для поиска",
-                        "de": "",
-                        "es": ""
-                    }
-                },
-                "limit": {
-                    "type": "Integer",
-                    "desc": {
-                        "en": "number of results",
-                        "ru": "количество результатов",
-                        "de": "",
-                        "es": ""
-                    }
-                }
-            }
-        },
-        "get_best_categories": {
-            "desc": {
-                "en": "",
-                "ru": "",
-                "de": "",
-                "es": ""
-            },
-            "params": {
-                "after": {
-                    "type": "String",
-                    "desc": {
-                        "en": "",
-                        "ru": "",
-                        "de": "",
-                        "es": ""
-                    }
-                },
-                "limit": {
-                    "type": "Integer",
-                    "desc": {
-                        "en": "number of results",
-                        "ru": "количество результатов",
-                        "de": "",
-                        "es": ""
-                    }
-                }
-            }
-        },
-        "get_active_categories": {
-            "desc": {
-                "en": "",
-                "ru": "",
-                "de": "",
-                "es": ""
-            },
-            "params": {
-                "after": {
-                    "type": "String",
-                    "desc": {
-                        "en": "",
-                        "ru": "",
-                        "de": "",
-                        "es": ""
-                    }
-                },
-                "limit": {
-                    "type": "Integer",
-                    "desc": {
-                        "en": "number of results",
-                        "ru": "количество результатов",
-                        "de": "",
-                        "es": ""
-                    }
-                }
-            }
-        },
-        "get_recent_categories": {
-            "desc": {
-                "en": "",
-                "ru": "",
-                "de": "",
-                "es": ""
-            },
-            "params": {
-                "after": {
-                    "type": "String",
-                    "desc": {
-                        "en": "",
-                        "ru": "",
-                        "de": "",
-                        "es": ""
-                    }
-                },
-                "limit": {
-                    "type": "Integer",
-                    "desc": {
-                        "en": "number of results",
-                        "ru": "количество результатов",
-                        "de": "",
-                        "es": ""
-                    }
-                }
-            }
-        },
         "get_config": {
             "desc": {
                 "en": "Displays the current node configuration.",
@@ -576,22 +455,6 @@
             "desc": {
                 "en": "Displays the conversion history",
                 "ru": "Отображает историю конверсий",
-                "de": "",
-                "es": ""
-            }
-        },
-        "get_current_median_history_price": {
-            "desc": {
-                "en": "Displays the current median price of conversion",
-                "ru": "Отображает текущую медианную цену конвертации",
-                "de": "",
-                "es": ""
-            }
-        },
-        "get_witness_schedule": {
-            "desc": {
-                "en": "Displays the current delegation status.",
-                "ru": "Отображает текущее состояние делегирования.",
                 "de": "",
                 "es": ""
             }
@@ -650,18 +513,18 @@
                 }
             }
         },
-        "get_account_references": {
+        "get_assets": {
             "desc": {
-                "en": "",
+                "en": "Returns data for specified User Issued Assets. If creator set, returns assets of that creator. If symbols set, returns specific assets (by symbols). If nothing set, returns all assets.",
                 "ru": "",
                 "de": "",
                 "es": ""
             },
             "params": {
-                "accountId": {
-                    "type": "String",
+                "symbols=[]": {
+                    "type": "Array",
                     "desc": {
-                        "en": "",
+                        "en": "symbols(strings) in array. E.g: [\"YMUSDT\"]. Warning: do not set creator if this param set.",
                         "ru": "",
                         "de": "",
                         "es": ""
@@ -903,35 +766,6 @@
                 }
             }
         },
-
-        "get_liquidity_queue": {
-            "desc": {
-                "en": "Gets the current liquidity reward queue.",
-                "ru": "Получает текущую очередность выплаты ликвидности.",
-                "de": "",
-                "es": ""
-            },
-            "params": {
-                "startAccount": {
-                    "type": "String",
-                    "desc": {
-                        "en": "username",
-                        "ru": "имя пользователя",
-                        "de": "",
-                        "es": ""
-                    }
-                },
-                "limit": {
-                    "type": "Integer",
-                    "desc": {
-                        "en": "number of results",
-                        "ru": "количество результатов",
-                        "de": "",
-                        "es": ""
-                    }
-                }
-            }
-        },
         "get_transaction_hex": {
             "desc": {
                 "en": "Displays the HEX transaction string.",
@@ -945,25 +779,6 @@
                     "desc": {
                         "en": "signed transaction.",
                         "ru": "подписанная транзакция",
-                        "de": "",
-                        "es": ""
-                    }
-                }
-            }
-        },
-        "get_transaction": {
-            "desc": {
-                "en": "Displays transaction details for the specified transaction ID.",
-                "ru": "Отображает детали транзакции по заданному ID транзакции.",
-                "de": "",
-                "es": ""
-            },
-            "params": {
-                "trxId": {
-                    "type": "String",
-                    "desc": {
-                        "en": "id",
-                        "ru": "id",
                         "de": "",
                         "es": ""
                     }
@@ -1063,248 +878,6 @@
                     }
                 }
             }
-        },
-        "get_active_votes": {
-            "desc": {
-                "en": "Displays the list of users who voted for the specified entry",
-                "ru": "Отображает список пользователей проголосовавших за указанную запись",
-                "de": "",
-                "es": ""
-            },
-            "params": {
-                "author": {
-                    "type": "String",
-                    "desc": {
-                        "en": "username (author of the publication)",
-                        "ru": "имя пользователя (автора публикации)",
-                        "de": "",
-                        "es": ""
-                    }
-                },
-                "permlink": {
-                    "type": "String",
-                    "desc": {
-                        "en": "link to publication",
-                        "ru": "ссылка на публикацию",
-                        "de": "",
-                        "es": ""
-                    }
-                }
-            }
-        },
-        "get_account_votes": {
-            "desc": {
-                "en": "Displays all the voices that are displayed by the specified user",
-                "ru": "Отображает все голоса которые выставлены указанным пользователем",
-                "de": "",
-                "es": ""
-            },
-            "params": {
-                "voter": {
-                    "type": "String",
-                    "desc": {
-                        "en": "username",
-                        "ru": "имя пользователя",
-                        "de": "",
-                        "es": ""
-                    }
-                }
-            }
-        },
-        "get_content": {
-            "desc": {
-                "en": "Gets information about the publication, with the exception of comments",
-                "ru": "Получает информацию о публикации, за исключением комментариев",
-                "de": "",
-                "es": ""
-            },
-            "params": {
-                "author": {
-                    "type": "String",
-                    "desc": {
-                        "en": "username",
-                        "ru": "имя пользователя",
-                        "de": "",
-                        "es": ""
-                    }
-                },
-                "permlink": {
-                    "type": "String",
-                    "desc": {
-                        "en": "link to publication",
-                        "ru": "ссылка на публикацию",
-                        "de": "",
-                        "es": ""
-                    }
-                }
-            }
-        },
-        "get_content_replies": {
-            "desc": {
-                "en": "Displays a list of all comments for the selected publication",
-                "ru": "Отображает список всех комментариев для выбранной публикации",
-                "de": "",
-                "es": ""
-            },
-            "params": {
-                "author": {
-                    "type": "String",
-                    "desc": {
-                        "en": "username",
-                        "ru": "имя пользователя",
-                        "de": "",
-                        "es": ""
-                    }
-                },
-                "parentPermlink": {
-                    "type": "String",
-                    "desc": {
-                        "en": "link to publication",
-                        "ru": "ссылка на публикацию",
-                        "de": "",
-                        "es": ""
-                    }
-                }
-            }
-        },
-        "get_discussions_by_author_before_date": {
-            "desc": {
-                "en": "Displays a limited number of user publications",
-                "ru": "Отображает ограниченное количество публикации пользователя",
-                "de": "",
-                "es": ""
-            },
-            "params": {
-                "author": {
-                    "type": "String",
-                    "desc": {
-                        "en": "username",
-                        "ru": "имя пользователя",
-                        "de": "",
-                        "es": ""
-                    }
-                },
-                "startPermlink": {
-                    "type": "String",
-                    "desc": {
-                        "en": "link to the publication from which to start filtering (may be empty)",
-                        "ru": "ссылка на публикацию с которой начинать фильтровать (может быть пустым)",
-                        "de": "",
-                        "es": ""
-                    }
-                },
-                "beforeDate": {
-                    "type": "String",
-                    "desc": {
-                        "en": "date to which to filter",
-                        "ru": "дата до которой фильтровать",
-                        "de": "",
-                        "es": ""
-                    }
-                },
-                "limit": {
-                    "type": "Integer",
-                    "desc": {
-                        "en": "number of results",
-                        "ru": "количество результатов",
-                        "de": "",
-                        "es": ""
-                    }
-                }
-            }
-        },
-        "get_replies_by_last_update": {
-            "desc": {
-                "en": "Return the active discussions with the highest cumulative pending payouts without respect to category, total  pending payout means the pending payout of all children as well.",
-                "ru": "Верните активные обсуждения с самыми высокими совокупными ожидающими выплатами без учета категории, общая ожидаемая выплата означает ожидаемую всю выплату.",
-                "de": "",
-                "es": ""
-            },
-            "params": {
-                "startAuthor": {
-                    "type": "String",
-                    "desc": {
-                        "en": "username",
-                        "ru": "имя пользователя",
-                        "de": "",
-                        "es": ""
-                    }
-                },
-                "startPermlink": {
-                    "type": "String",
-                    "desc": {
-                        "en": "link to publication",
-                        "ru": "ссылка на публикацию",
-                        "de": "",
-                        "es": ""
-                    }
-                },
-                "limit": {
-                    "type": "Integer",
-                    "desc": {
-                        "en": "number of results",
-                        "ru": "количество результатов",
-                        "de": "",
-                        "es": ""
-                    }
-                }
-            }
-        },
-        "get_reward_fund": {
-            "desc": {
-                "en": "",
-                "ru": "",
-                "de": "",
-                "es": ""
-            },
-            "params": {
-                "name": {
-                    "type": "String",
-                    "desc": {
-                        "en": "",
-                        "ru": "",
-                        "de": "",
-                        "es": ""
-                    }
-                }
-            }
-        },
-        "get_vesting_delegations": {
-            "desc": {
-                "en": "",
-                "ru": "",
-                "de": "",
-                "es": ""
-            },
-            "params": {
-                "account": {
-                    "type": "String",
-                    "desc": {
-                        "en": "",
-                        "ru": "",
-                        "de": "",
-                        "es": ""
-                    }
-                },
-                "from": {
-                    "type": "String",
-                    "desc": {
-                        "en": "",
-                        "ru": "",
-                        "de": "",
-                        "es": ""
-                    }
-                },
-                "limit": {
-                    "type": "Integer",
-                    "desc": {
-                        "en": "number of results",
-                        "ru": "количество результатов",
-                        "de": "",
-                        "es": ""
-                    }
-                }
-            }
         }
     },
     "account_by_key": {
@@ -1328,64 +901,28 @@
             }
         }
     },
-    "login_api": {
-        "login": {
+    "account_notes": {
+        "get_values": {
             "desc": {
-                "en": "Allows you to connect to the accounts on the network.",
-                "ru": "Позволяет подключаться к учетным записям в сети.",
+                "en": "Get values of specified account by specified keys (or all its values)",
+                "ru": "",
                 "de": "",
                 "es": ""
             },
             "params": {
-                "username": {
-                    "type": "String",
+                "keys=[]": {
+                    "type": "Object",
                     "desc": {
-                        "en": "username",
-                        "ru": "имя пользователя",
-                        "de": "",
-                        "es": ""
-                    }
-                },
-                "password": {
-                    "type": "String",
-                    "desc": {
-                        "en": "user password",
-                        "ru": "пароль пользователя",
+                        "en": "",
+                        "ru": "",
                         "de": "",
                         "es": ""
                     }
                 }
-            }
-        },
-        "get_api_by_name": {
-            "desc": {
-                "en": "Returns the unique API identifier by its name.",
-                "ru": "Возвращает уникальный идентификатор API по его имени.",
-                "de": "",
-                "es": ""
-            },
-            "params": {
-                "apiName": {
-                    "type": "String",
-                    "desc": {
-                        "en": "API name (example login_api or follow_api)",
-                        "ru": "имя API (пример login_api или follow_api)",
-                        "de": "",
-                        "es": ""
-                    }
-                }
-            }
-        },
-        "get_version": {
-            "desc": {
-                "en": "Returns the version information for the components of the blockchain.",
-                "ru": "Возвращает данные о версии компонентов блокчейн",
-                "de": "",
-                "es": ""
             }
         }
     },
-    "follow_api": {
+    "follow": {
         "get_followers": {
             "desc": {
                 "en": "Returns the list: Either all of the subscribers of the user are 'following'. Or, if the user name is specified, the list of matching subscribers is returned in the parameter 'startFollower'.",
@@ -1531,6 +1068,15 @@
                         "de": "",
                         "es": ""
                     }
+                },
+                "filterTagMasks=[]": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
                 }
             }
         },
@@ -1565,6 +1111,15 @@
                     "desc": {
                         "en": "number of results",
                         "ru": "количество результатов",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "filterTagMasks=[]": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "",
+                        "ru": "",
                         "de": "",
                         "es": ""
                     }
@@ -1605,6 +1160,15 @@
                         "de": "",
                         "es": ""
                     }
+                },
+                "filterTagMasks=[]": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
                 }
             }
         },
@@ -1642,32 +1206,32 @@
                         "de": "",
                         "es": ""
                     }
+                },
+                "filterTagMasks=[]": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
                 }
             }
         },
         "get_account_reputations": {
             "desc": {
-                "en": "Returns data about the reputation of users filtered by template.",
-                "ru": "Возвращает данные о репутации пользователей отфильтрованных по шаблону.",
+                "en": "Returns data about the reputation of users.",
+                "ru": "Возвращает данные о репутации пользователей.",
                 "de": "",
                 "es": ""
             },
             "params": {
-                "lowerBoundName": {
-                    "type": "String",
+                "names": {
+                    "type": "Array",
                     "desc": {
-                        "en": "search pattern",
-                        "ru": "шаблон поиска",
-                        "de": "",
-                        "es": ""
-                    }
-                },
-                "limit": {
-                    "type": "Integer",
-                    "desc": {
-                        "en": "number of results",
-                        "ru": "количество результатов",
-                        "de": "",
+                        "en": "accounts(strings) in nested array",
+                        "ru": "имена аккаунтов (строки) в виде массива",
+                        "de": "Kontennamen als ein Array",
                         "es": ""
                     }
                 }
@@ -1828,7 +1392,45 @@
         }
     },
     "market_history": {
-                    "get_open_orders": {
+        "get_depth": {
+            "desc": {
+                "en": "Returns the market depth for the internal market",
+                "ru": "",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "pair=[\"GOLOS\", \"GBG\"]": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "array of 2 items - first and second symbol in market pair",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
+                }
+            }
+        },
+        "get_fillable_orders": {
+            "desc": {
+                "en": "Returns the fillable orders for the internal market",
+                "ru": "",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "market_price": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "object of 2 fields (assets) - base and quote",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
+                }
+            }
+        },
+        "get_open_orders": {
             "desc": {
                 "en": "Displays a list of orders on the internal exchange for the purchase and sale on the network for the specified user.",
                 "ru": "Отображает список заявок на внутренней бирже на покупку и продажу в сети для указанного пользователя.",
@@ -1844,15 +1446,35 @@
                         "de": "",
                         "es": ""
                     }
+                },
+                "pair=[\"GOLOS\", \"GBG\"]": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "array of 2 items - first and second symbol in market pair",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
                 }
             }
-        },        
+        },
         "get_ticker": {
             "desc": {
                 "en": "Returns the market ticker for the internal market",
                 "ru": "Возвращает рыночный тикет для внутреннего рынка ",
                 "de": "",
                 "es": ""
+            },
+            "params": {
+                "pair=[\"GOLOS\", \"GBG\"]": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "array of 2 items - first and second symbol in market pair",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
+                }
             }
         },
         "get_volume": {
@@ -1861,6 +1483,17 @@
                 "ru": "Возвращает объем рынка за последние 24 часа",
                 "de": "",
                 "es": ""
+            },
+            "params": {
+                "pair=[\"GOLOS\", \"GBG\"]": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "array of 2 items - first and second symbol in market pair",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
+                }
             }
         },
         "get_order_book": {
@@ -1876,6 +1509,43 @@
                     "desc": {
                         "en": "number of results",
                         "ru": "количество результатов",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "pair=[\"GOLOS\", \"GBG\"]": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "array of 2 items - first and second symbol in market pair",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
+                }
+            }
+        },
+        "get_order_book_extended": {
+            "desc": {
+                "en": "Displays a list of applications on the internal exchange for the purchase and sale of the network",
+                "ru": "Отображает список заявок на внутренней бирже на покупку и продажу в сети",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "limit": {
+                    "type": "Integer",
+                    "desc": {
+                        "en": "number of results",
+                        "ru": "количество результатов",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "pair=[\"GOLOS\", \"GBG\"]": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "array of 2 items - first and second symbol in market pair",
+                        "ru": "",
                         "de": "",
                         "es": ""
                     }
@@ -1916,6 +1586,15 @@
                         "de": "",
                         "es": ""
                     }
+                },
+                "pair=[\"GOLOS\", \"GBG\"]": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "array of 2 items - first and second symbol in market pair",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
                 }
             }
         },
@@ -1932,6 +1611,15 @@
                     "desc": {
                         "en": "number of results",
                         "ru": "количество результатов",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "pair=[\"GOLOS\", \"GBG\"]": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "array of 2 items - first and second symbol in market pair",
+                        "ru": "",
                         "de": "",
                         "es": ""
                     }
@@ -1972,6 +1660,15 @@
                         "de": "",
                         "es": ""
                     }
+                },
+                "pair=[\"GOLOS\", \"GBG\"]": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "array of 2 items - first and second symbol in market pair",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
                 }
             }
         },
@@ -1981,6 +1678,377 @@
                 "ru": "Возвращает размер секунд стакана(среза), отслеживаемых плагином.",
                 "de": "",
                 "es": ""
+            }
+        }
+    },
+    "operation_history" : {
+        "get_ops_in_block": {
+            "desc": {
+                "en": "Returns all operations in the block, if the parameter 'onlyVirtual' is true, then returns only the virtual operations",
+                "ru": "Возвращает все операции в блоке, если параметр 'onlyVirtual' true то возвращает только виртуальные операции",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "blockNum": {
+                    "type": "Integer",
+                    "desc": {
+                        "en": "block number",
+                        "ru": "номер блока",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "onlyVirtual": {
+                    "type": "Boolean",
+                    "desc": {
+                        "en": "show only virtual operations",
+                        "ru": "показывать только виртуальные операции",
+                        "de": "",
+                        "es": ""
+                    }
+                }
+            }
+        },
+        "get_transaction": {
+            "desc": {
+                "en": "Displays transaction details for the specified transaction ID.",
+                "ru": "Отображает детали транзакции по заданному ID транзакции.",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "trxId": {
+                    "type": "String",
+                    "desc": {
+                        "en": "id",
+                        "ru": "id",
+                        "de": "",
+                        "es": ""
+                    }
+                }
+            }
+        }
+    },
+    "private_message" : {
+        "get_inbox": {
+            "desc": {
+                "en": "",
+                "ru": "",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "query": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
+                }
+            }
+        },
+        "get_outbox": {
+            "desc": {
+                "en": "",
+                "ru": "",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "query": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
+                }
+            }
+        },
+        "get_thread": {
+            "desc": {
+                "en": "",
+                "ru": "",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "query": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
+                }
+            }
+        }
+    },
+    "social_network" : {
+        "get_all_content_replies": {
+            "desc": {
+                "en": "",
+                "ru": "",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "filterIds=[]": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "filterAuthors=[]": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "sortByCreatedDesc=null": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
+                }
+            }
+        },
+        "get_active_votes": {
+            "desc": {
+                "en": "Displays the list of users who voted for the specified entry",
+                "ru": "Отображает список пользователей проголосовавших за указанную запись",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "author": {
+                    "type": "String",
+                    "desc": {
+                        "en": "username (author of the publication)",
+                        "ru": "имя пользователя (автора публикации)",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "permlink": {
+                    "type": "String",
+                    "desc": {
+                        "en": "link to publication",
+                        "ru": "ссылка на публикацию",
+                        "de": "",
+                        "es": ""
+                    }
+                }
+            }
+        },
+        "get_account_votes": {
+            "desc": {
+                "en": "Displays all the voices that are displayed by the specified user",
+                "ru": "Отображает все голоса которые выставлены указанным пользователем",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "voter": {
+                    "type": "String",
+                    "desc": {
+                        "en": "username",
+                        "ru": "имя пользователя",
+                        "de": "",
+                        "es": ""
+                    }
+                }
+            }
+        },
+        "get_content": {
+            "desc": {
+                "en": "Gets information about the publication, with the exception of comments",
+                "ru": "Получает информацию о публикации, за исключением комментариев",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "author": {
+                    "type": "String",
+                    "desc": {
+                        "en": "username",
+                        "ru": "имя пользователя",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "permlink": {
+                    "type": "String",
+                    "desc": {
+                        "en": "link to publication",
+                        "ru": "ссылка на публикацию",
+                        "de": "",
+                        "es": ""
+                    }
+                }
+            }
+        },
+        "get_content_replies": {
+            "desc": {
+                "en": "Displays a list of all comments for the selected publication",
+                "ru": "Отображает список всех комментариев для выбранной публикации",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "author": {
+                    "type": "String",
+                    "desc": {
+                        "en": "username",
+                        "ru": "имя пользователя",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "parentPermlink": {
+                    "type": "String",
+                    "desc": {
+                        "en": "link to publication",
+                        "ru": "ссылка на публикацию",
+                        "de": "",
+                        "es": ""
+                    }
+                }
+            }
+        },
+        "get_donates": {
+            "desc": {
+                "en": "Displays a list of donates of specified target (post, comment, etc.)",
+                "ru": "",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "target": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
+                }
+            }
+        },
+        "get_donates_for_targets": {
+            "desc": {
+                "en": "Displays a list of donates of specified target (post, comment, etc.)",
+                "ru": "",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "targets": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
+                }
+            }
+        },
+        "get_discussions_by_author_before_date": {
+            "desc": {
+                "en": "Displays a limited number of user publications",
+                "ru": "Отображает ограниченное количество публикации пользователя",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "author": {
+                    "type": "String",
+                    "desc": {
+                        "en": "username",
+                        "ru": "имя пользователя",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "startPermlink": {
+                    "type": "String",
+                    "desc": {
+                        "en": "link to the publication from which to start filtering (may be empty)",
+                        "ru": "ссылка на публикацию с которой начинать фильтровать (может быть пустым)",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "beforeDate": {
+                    "type": "String",
+                    "desc": {
+                        "en": "date to which to filter",
+                        "ru": "дата до которой фильтровать",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "limit": {
+                    "type": "Integer",
+                    "desc": {
+                        "en": "number of results",
+                        "ru": "количество результатов",
+                        "de": "",
+                        "es": ""
+                    }
+                }
+            }
+        },
+        "get_replies_by_last_update": {
+            "desc": {
+                "en": "Return the active discussions with the highest cumulative pending payouts without respect to category, total  pending payout means the pending payout of all children as well.",
+                "ru": "Верните активные обсуждения с самыми высокими совокупными ожидающими выплатами без учета категории, общая ожидаемая выплата означает ожидаемую всю выплату.",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "startAuthor": {
+                    "type": "String",
+                    "desc": {
+                        "en": "username",
+                        "ru": "имя пользователя",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "startPermlink": {
+                    "type": "String",
+                    "desc": {
+                        "en": "link to publication",
+                        "ru": "ссылка на публикацию",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "limit": {
+                    "type": "Integer",
+                    "desc": {
+                        "en": "number of results",
+                        "ru": "количество результатов",
+                        "de": "",
+                        "es": ""
+                    }
+                }
             }
         }
     },
@@ -2087,6 +2155,22 @@
                 "es": ""
             }
         },
+        "get_current_median_history_price": {
+            "desc": {
+                "en": "Displays the current median price of conversion",
+                "ru": "Отображает текущую медианную цену конвертации",
+                "de": "",
+                "es": ""
+            }
+        },
+        "get_witness_schedule": {
+            "desc": {
+                "en": "Displays the current delegation status.",
+                "ru": "Отображает текущее состояние делегирования.",
+                "de": "",
+                "es": ""
+            }
+        },
         "get_active_witnesses": {
             "desc": {
                 "en": "Displays a list of all active delegates.",
@@ -2101,6 +2185,38 @@
                 "ru": "Создает список майнеров, ожидающих попасть в DPOW цепочку, чтобы создать блок.",
                 "de": "",
                 "es": ""
+            }
+        }
+    },
+    "worker_api" : {
+        "get_worker_requests": {
+            "desc": {
+                "en": "Gets list of worker requests (or only one request).",
+                "ru": "",
+                "de": "",
+                "es": ""
+            },
+            "params": {
+                "query": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "sort": {
+                    "desc": {
+                        "en": "by_created, by_net_rshares, by_upvotes, or by_downvotes",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "fill_post": {
+                    "type": "Boolean"
+                }
             }
         }
     }
