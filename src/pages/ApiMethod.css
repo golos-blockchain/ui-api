@@ -20,6 +20,20 @@
     color: rgba(75,174,22,1);
 }
 
+.example-checkbox {
+    vertical-align: middle;
+    margin: 0px !important;
+    margin-top: 10px !important;
+    margin-bottom: 10px !important;
+}
+
+.example-checkbox-label {
+    font-weight: normal;
+    vertical-align: middle;
+    margin: 0px;
+    margin-left: 5px;
+}
+
 .ApiMethod {
     margin: 5px;
 }

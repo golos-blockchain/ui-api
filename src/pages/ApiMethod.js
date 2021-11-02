@@ -5,11 +5,14 @@ import ApiMethodParameters from "../elements/ApiMethodParameters";
 import JSONPretty from 'react-json-pretty';
 import Header from "../elements/Header";
 import queryString from "query-string";
+import JSON5 from 'json5';
 import { getDesc, setLang, getLang } from "../utils/helpers";
 
-import {Button, Panel, Well, Grid, Col, Row} from "react-bootstrap"
+import { Button, Panel, Well, Grid, Col, Row, Tabs, Tab, } from "react-bootstrap"
 
 import "./ApiMethod.css"
+
+import { utils, } from 'golos-lib-js';
 
 class ApiMethod extends Component {
 
@@ -22,7 +25,9 @@ class ApiMethod extends Component {
             executing: false,
             blockchain: SteemApi.Blockchain.LEX,
             ws: null,
-            gotParams: false
+            gotParams: false,
+            examplesLang: localStorage.getItem('examples.lang') || 'JSON-RPC',
+            examplesJSNoAsync: !!localStorage.getItem('examples.js.noAsync'),
         };
 
         this.onExecute = this.onExecute.bind(this);
@@ -123,7 +128,40 @@ class ApiMethod extends Component {
             method.api,
             method.name,
             params
-        ]})
+        ]});
+    }
+
+    getJSCall(withoutAsync = false) {
+        let methodName = this.props.match.params.method_name;
+        let apiName = this.props.match.params.api_name;
+        let method = this.steemapi.methods[apiName][methodName];
+        let params = this.getParameterValues();
+
+        methodName = utils.camelCase(methodName);
+
+        let jsParams = params.map(p => JSON5.stringify(p, null, 4));
+        jsParams = jsParams.join(', ');
+        jsParams = jsParams.split('\n').join('\n    ');
+
+        const logging = 'console.log(err, res);\n';
+        const loggingAsync = '    console.log(res);\n';
+
+        let code = 'golos.api.' + methodName;
+        if (!withoutAsync) code = 'let res;\ntry {\n    res = await ' + code + 'Async';
+        code += '(' + jsParams;
+        if (withoutAsync) {
+            code += ', (err, res) => {\n';
+            code += '    ' + logging;
+            code += '}';
+        }
+        code += ');\n';
+        if (!withoutAsync) {
+            code += loggingAsync;
+            code += '} catch (err) {\n';
+            code += '    console.error(\'err\', err);\n';
+            code += '}';
+        }
+        return code;
     }
 
     onExecute(event) {
@@ -174,11 +212,30 @@ class ApiMethod extends Component {
         window.scrollTo(0, 0);
     }
 
+    onExampleTabChange = (key) => {
+        this.setState({
+            examplesLang: key,
+        });
+        localStorage.setItem('examples.lang', key);
+    };
+
+    onJSAsyncToggle = (e) => {
+        if (this.state.examplesJSNoAsync) {
+            localStorage.removeItem('examples.js.noAsync');
+            this.setState({examplesJSNoAsync: '', });
+        } else {
+            localStorage.setItem('examples.js.noAsync', '1');
+            this.setState({examplesJSNoAsync: '1', });
+        }
+    };
+
     render() {
         const { classes } = this.props;
         let methodName = this.props.match.params.method_name;
         let apiName = this.props.match.params.api_name;
         let method = this.steemapi.methods[apiName][methodName];
+
+        const { examplesLang, examplesJSNoAsync, } = this.state;
 
         document.title = "Steem-JS API - " + methodName;
 
@@ -243,7 +300,29 @@ class ApiMethod extends Component {
                     API запрос
                 </Panel.Heading>                
                 <Panel.Body>
-                    {this.getApiCall()}
+                    <Tabs activeKey={examplesLang}
+                        id="examples"
+                        animation={false}
+                        onSelect={this.onExampleTabChange}>
+                        <Tab eventKey="JSON-RPC" title="JSON-RPC">
+                            <pre>
+                                {this.getApiCall()}
+                            </pre>
+                        </Tab>
+                        <Tab eventKey="JavaScript" title="JavaScript">
+                            <input id='noasync' type='checkbox'
+                                className='example-checkbox'
+                                checked={!!examplesJSNoAsync}
+                                onClick={this.onJSAsyncToggle}
+                            />
+                            <label htmlFor='noasync' className='example-checkbox-label'>
+                                Without async
+                            </label>
+                            <pre>
+                                {this.getJSCall(!!examplesJSNoAsync)}
+                            </pre>
+                        </Tab>
+                    </Tabs>
                 </Panel.Body>
                 </Panel>
 
