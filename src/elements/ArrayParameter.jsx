@@ -1,6 +1,8 @@
 import React, { Component, } from 'react';
 
-import { FormControl, FormGroup, ControlLabel, } from 'react-bootstrap';
+import { FormControl, FormGroup, } from 'react-bootstrap';
+
+import ParameterLabel from './ParameterLabel';
 
 class ArrayParameter extends Component {
     render() {
@@ -10,7 +12,7 @@ class ArrayParameter extends Component {
 
         let inputs = [0, 1, 2].map((pIdx) =>
             <FormGroup key={pIdx}>
-                <ControlLabel>{param.name + ' ' + pIdx}</ControlLabel>
+                <ParameterLabel title={param.name + ' ' + pIdx} param={param}/>
                 <FormControl
                     type='text'
                     name={param.name + '_' + pIdx} 

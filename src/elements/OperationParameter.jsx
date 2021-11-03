@@ -1,6 +1,6 @@
 import React, { Component, } from 'react';
 
-import types from '../steemjs/api/types.json';
+import types from '../steemjs/api/types.js';
 import ParameterCss from './Parameter.css';
 import AuthorityParameter from './AuthorityParameter.js';
 import ObjectParameter from './ObjectParameter';

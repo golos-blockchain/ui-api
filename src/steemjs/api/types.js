@@ -1,4 +1,4 @@
-{
+module.exports = {
     "account_history" : {
         "get_account_history": {
             "desc": {

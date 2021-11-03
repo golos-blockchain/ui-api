@@ -1,0 +1,8 @@
+.parameter-label.clickable {
+    cursor: pointer;
+}
+
+.parameter-label .glyphicon {
+    margin-left: 5px;
+    color: #B0B0B0;
+}

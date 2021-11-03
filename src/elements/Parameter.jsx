@@ -1,8 +1,10 @@
-import React, { Component } from 'react';
+import React, { Component, } from 'react';
 import ArrayParameter from './ArrayParameter';
 import ObjectParameter from './ObjectParameter';
 
-import { FormControl, FormGroup, ControlLabel, } from 'react-bootstrap';
+import { FormControl, FormGroup, } from 'react-bootstrap';
+
+import ParameterLabel from './ParameterLabel';
 
 class Parameter extends Component {
     constructor() {
@@ -38,7 +40,7 @@ class Parameter extends Component {
             break;
         default:
             input = <FormGroup>
-                <ControlLabel>{param.disp_name}</ControlLabel>
+                <ParameterLabel title={param.disp_name} param={param}/>
                 <FormControl 
                     placeholder={param.default} 
                     type='text' 

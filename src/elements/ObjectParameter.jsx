@@ -1,14 +1,16 @@
 import React, { Component, } from 'react';
-import { FormControl, FormGroup, ControlLabel, HelpBlock, } from 'react-bootstrap';
+
+import { FormControl, FormGroup, HelpBlock, } from 'react-bootstrap';
+
+import ParameterLabel from './ParameterLabel';
 
 class ObjectParameter extends Component {
     constructor() {
         super();
         this.state = { error: null, };
-        this.onChange = this.onChange.bind(this);
     }
 
-    onChange(event) {
+    onChange = (event) => {
         const target = event.target;
         const value = target.value;
 
@@ -36,9 +38,7 @@ class ObjectParameter extends Component {
         }
 
         return (<FormGroup>
-            <ControlLabel>
-                {param.disp_name}
-            </ControlLabel>
+            <ParameterLabel title={param.disp_name} param={param} />
             <FormControl componentClass='textarea' 
                 name={param.name} 
                 placeholder={param.default}
