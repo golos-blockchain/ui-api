@@ -1,7 +1,7 @@
 .Header-body {
-    background : #6d9eed;
-    height : 200px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.5);
+    background: #6d9eed;
+    height: 200px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }
 
 .Header-title {
@@ -25,4 +25,3 @@
 
 .Header-navigation {
 }
-

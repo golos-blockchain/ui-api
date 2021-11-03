@@ -22,32 +22,32 @@ class ObjectParameter extends Component {
             this.setState({ error: e.toString(), });
         }
     };
-  
+
     render() {
         let getValue = this.props.getValue;
-        
+
         let { param, } = this.props;
-        
+
         let error = null;
         if (this.state.error) {
             error = <div className='Parameter-error'>
                 {this.state.error}
             </div>;
         }
-        
+
         return (<FormGroup>
-                    <ControlLabel>
-                        {param.disp_name}
-                    </ControlLabel>
-                    <FormControl componentClass='textarea' 
-                        name={param.name} 
-                        placeholder={param.default}
-                        maxRows={5} 
-                        onChange={this.onChange} 
-                        value={getValue(param.name)}>
-                    </FormControl>
-                    {error && <HelpBlock>{error}</HelpBlock>}
-            </FormGroup>);
+            <ControlLabel>
+                {param.disp_name}
+            </ControlLabel>
+            <FormControl componentClass='textarea' 
+                name={param.name} 
+                placeholder={param.default}
+                maxRows={5} 
+                onChange={this.onChange} 
+                value={getValue(param.name)}>
+            </FormControl>
+            {error && <HelpBlock>{error}</HelpBlock>}
+        </FormGroup>);
     }
 }
 
