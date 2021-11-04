@@ -30,7 +30,7 @@ module.exports = {
                     "type": "Integer",
                     "desc": {
                         "en": "number of results",
-                        "ru": "колличество результатов",
+                        "ru": "количество результатов",
                         "de": "",
                         "es": ""
                     }
@@ -70,7 +70,7 @@ module.exports = {
         "get_trending_tags": {
             "desc": {
                 "en": "Returns a list of tags (tags) that include word combinations",
-                "ru": "Возращает список меток(тэгов) включающие словосочетания",
+                "ru": "Возвращает список меток (тэгов) включающие словосочетания",
                 "de": "",
                 "es": ""
             },
@@ -391,8 +391,8 @@ module.exports = {
     "database_api": {
         "get_block_header": {
             "desc": {
-                "en": "Returns block for given number",
-                "ru": "Возвращает все данные о блоке",
+                "en": "Returns block for given number, excl. transactions and witness signature (use <code>get_block</code>, <code>get_ops_in_block</code>, <code>get_events_in_block</code>)",
+                "ru": "Возвращает все данные о блоке, кроме транзакций и подписи делегата (используйте <code>get_block</code>, <code>get_ops_in_block</code>, <code>get_events_in_block</code>).",
                 "de": "",
                 "es": ""
             },
@@ -410,8 +410,8 @@ module.exports = {
         },
         "get_block": {
             "desc": {
-                "en": "Returns block for given number",
-                "ru": "Возвращает все данные о блоке включая транзакции",
+                "en": "Returns block for given number, incl. transactions with operations. Stores data for whole blockchain lifetime. But not includes <b>virtual</b> operations (use <code>get_ops_in_block</code>, <code>get_events_in_block</code>).",
+                "ru": "Возвращает все данные о блоке, включая транзакции с операциями. Хранит данные за все время. Но не включает <b>виртуальных</b> операций (используйте <code>get_ops_in_block</code>, <code>get_events_in_block</code>).",
                 "de": "",
                 "es": ""
             },
@@ -429,24 +429,24 @@ module.exports = {
         },
         "get_config": {
             "desc": {
-                "en": "Displays the current node configuration.",
-                "ru": "Отображает текущую конфигурацию узла.",
+                "en": "Displays the current node configuration. This configuration is set by developers and can be changed only by their, when code base updates. E.g, <code>STEEMIT_BLOCKCHAIN_HARDFORK_VERSION</code> is not current applied HF. It may be just planned HF, which will be applied after some time.",
+                "ru": "Отображает текущую конфигурацию узла, заданную разработчиками и изменяемую только ими же, при обновлении кодовой базы. Например, <code>STEEMIT_BLOCKCHAIN_HARDFORK_VERSION</code> - это не принятый на данный момент ХФ, а максимальный ХФ, существующий в данной кодовой базе. Этот ХФ может быть еще не принят на момент запроса.",
                 "de": "",
                 "es": ""
             }
         },
         "get_dynamic_global_properties": {
             "desc": {
-                "en": "Displays information about the current network status.",
-                "ru": "Отображает информацию о текущем состоянии сети",
+                "en": "Displays information about the current network status (e.g. head block number).",
+                "ru": "Отображает информацию о текущем состоянии сети (<code>head_block_number</code> - № последнего блока и др.)",
                 "de": "",
                 "es": ""
             }
         },
         "get_chain_properties": {
             "desc": {
-                "en": "Displays the commission for creating the user, the maximum block size and the GBG interest rate.",
-                "ru": "Отображает комиссию за создание пользователя, максимальный размер блока и процентную ставку GBG.",
+                "en": "Displays some blockchain parameters which are set by its TOP-witnesses (by median).",
+                "ru": "Отображает различные параметры блокчейна, выставляемые его ТОП-делегатами (каждый ТОП-делегат предлагает то или иное значение, берется медиана).",
                 "de": "",
                 "es": ""
             }
@@ -477,8 +477,8 @@ module.exports = {
         },
         "get_accounts": {
             "desc": {
-                "en": "Returns data for specified accounts",
-                "ru": "Возращает данные по заданным аккаунтам",
+                "en": "Returns data for specified accounts. Returns array of objects, which contains an object for each existant account. If some account is not existant, it just skipped (no null added). Compare with <code>lookup_account_names</code> method.",
+                "ru": "Возвращает данные по заданным аккаунтам. Возвращает массив объектов - на каждый существующий аккаунт добавляется объект. Если какого-то аккаунта не существует, то он просто пропускается (а не добавляется null вместо объекта). Сравните с методом <code>lookup_account_names</code>.",
                 "de": "Liefert Daten für eingegebene Benutzer zurück",
                 "es": ""
             },
@@ -496,13 +496,13 @@ module.exports = {
         },
         "get_accounts_balances": {
             "desc": {
-                "en": "Returns balances for specified accounts",
-                "ru": "Возращает данные по балансам заданных аккаунтов",
+                "en": "Returns UIA-balances for specified accounts",
+                "ru": "Возвращает данные по UIA-балансам заданных аккаунтов",
                 "de": "",
                 "es": ""
             },
             "params": {
-                "accountNames": {
+                "account_names": {
                     "type": "Array",
                     "desc": {
                         "en": "accounts(strings) in nested array",
@@ -516,7 +516,7 @@ module.exports = {
         "get_assets": {
             "desc": {
                 "en": "Returns data for specified User Issued Assets. If creator set, returns assets of that creator. If symbols set, returns specific assets (by symbols). If nothing set, returns all assets.",
-                "ru": "",
+                "ru": "Возвращает данные по UIA-активам, принадлежащим юзеру или имеющимся во всей системе в целом (не путать с балансами UIA, возвращаемыми методом <code>get_accounts_balances</code>).<br>Если <code>creator</code> задан, то возвращает активы этого пользователя.<br>Если задано поле <code>symbols</code> и не задано поле <code>creator</code>, то возвращает активы по этим символам (пример символов: \"YMUSDT\", \"DOGECOIN\").<br>Если не задано ни одно из этих полей, то возвращает вообще все активы, какие есть в блокчейне.",
                 "de": "",
                 "es": ""
             },
@@ -534,8 +534,8 @@ module.exports = {
         },
         "lookup_account_names": {
             "desc": {
-                "en": "Returns data for specified accounts",
-                "ru": "Возращает данные по заданным аккаунтам",
+                "en": "Returns data for specified accounts. Returns array of objects, which contains an object for each existant account, or null, if account not exists. Compare with <code>get_accounts</code> method.",
+                "ru": "Возвращает данные по заданным аккаунтам. Возвращает массив объектов - на каждый существующий аккаунт добавляется объект или null. Если какого-то аккаунта не существует, то добавляется null вместо объекта (таким образом длина массива и индексы объектов всегда равны индексу имени аккаунта во входном массиве). В этом заключается принципиальное отличие от <code>get_accounts</code>.",
                 "de": "",
                 "es": ""
             },
@@ -582,7 +582,7 @@ module.exports = {
         "get_account_count": {
             "desc": {
                 "en": "Returns the number of registered users.",
-                "ru": "Возвращает количество зарегестрированных пользователей.",
+                "ru": "Возвращает количество зарегистрированных пользователей.",
                 "de": "",
                 "es": ""
             }
@@ -720,8 +720,8 @@ module.exports = {
                 "bandwidthType": {
                     "type": "Integer",
                     "desc": {
-                        "en": "The type is given by a number: 0-post, 1- forum, 2- market, 3- old_forum, 4- old_market",
-                        "ru": "Тип задается числом: 0- post , 1- forum , 2- market , 3- old_forum , 4- old_market",
+                        "en": "post, forum, market,  custom_json",
+                        "ru": "post, forum, market,  custom_json",
                         "de": "",
                         "es": ""
                     }
@@ -883,8 +883,8 @@ module.exports = {
     "account_by_key": {
         "get_key_references": {
             "desc": {
-                "en": "Finds account for public key",
-                "ru": "Возвращает аккаунт по публичному ключу",
+                "en": "Finds accounts using specified public key (detects posting, active, owner, but NOT detects memo)",
+                "ru": "Возвращает аккаунты, использующие данный  публичный ключ (обнаруживает posting, active, owner, но НЕ обнаруживает memo)",
                 "de": "",
                 "es": ""
             },
@@ -905,7 +905,7 @@ module.exports = {
         "get_values": {
             "desc": {
                 "en": "Get values of specified account by specified keys (or all its values)",
-                "ru": "",
+                "ru": "Получает значения, которые хранит заданный аккаунт. Позволят получить значения по ключам или вообще все значения",
                 "de": "",
                 "es": ""
             },
@@ -913,12 +913,20 @@ module.exports = {
                 "keys=[]": {
                     "type": "Object",
                     "desc": {
-                        "en": "",
-                        "ru": "",
+                        "en": "array of strings - keys. Or use [] to obtain all values of that accounts",
+                        "ru": "массив строк - ключи, по которым надо получить значения.<br/>Используйте <code>[]</code>, чтобы получить все значения аккаунта",
                         "de": "",
                         "es": ""
                     }
                 }
+            }
+        },
+        "get_values_settings": {
+            "desc": {
+                "en": "Returns account_notes limits on current Golos node, which need to be considered by users.",
+                "ru": "Возвращает лимиты, действующие в account_notes на данной ноде Golos. Эти лимиты необходимо учитывать, поскольку за их пределами плагин может не сохранять информацию.",
+                "de": "",
+                "es": ""
             }
         }
     },
@@ -1771,8 +1779,8 @@ module.exports = {
         },
         "get_thread": {
             "desc": {
-                "en": "",
-                "ru": "",
+                "en": "Returns private message history in chat-like style. Used in Golos Messenger.",
+                "ru": "Получает историю сообщений в виде чата. Используется в Golos Messenger. Используйте этот метод для получения сообщений. А расшифровать и безопасно обработать эти сообщения можно с помощью <a href='https://github.com/golos-blockchain/libs/blob/master/golos-lib-js/docs/files/msgs.md#%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B9-%D0%BF%D1%80%D0%B8-%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D0%B8%D0%B8-%D0%BC%D0%B5%D1%81%D1%81%D0%B5%D0%BD%D0%B4%D0%B6%D0%B5%D1%80%D0%B0-%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%BA%D0%B0-%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B9' target='_blank' rel='noopener nofollow'>Golos Messenger API</a>.",
                 "de": "",
                 "es": ""
             },
@@ -1780,8 +1788,18 @@ module.exports = {
                 "query": {
                     "type": "Object",
                     "desc": {
-                        "en": "",
-                        "ru": "",
+                        "en": "All params are optional. In simplest case just use <code>{}</code>. \
+<ul> \
+<li>unread_only. Default is false.</li> \
+<li>limit. How many messages to return. Default is 100, maximum is 1000.</li> \
+<li>offset. Pagination. Default is 0, e.g. newest messages.</li> \
+</ul>",
+                        "ru": "Все параметры опциональны, в простейшем варианте достаточно <code>{}</code>. \
+<ul> \
+<li>unread_only. true, чтобы получить только непрочитанные. По умолчанию - false.</li> \
+<li>limit. Сколько сообщений выдать. По умолчанию - 100, гарантируемый максимум - 1000.</li> \
+<li>offset. Пагинация. С какого сообщения (от новых к старым) выдать массив сообщений. Отсчет идет от новых к старым. По умолчанию - 0, то есть выдаются последние сообщения.</li> \
+</ul>",
                         "de": "",
                         "es": ""
                     }
@@ -1932,17 +1950,71 @@ module.exports = {
         },
         "get_donates": {
             "desc": {
-                "en": "Displays a list of donates of specified target (post, comment, etc.)",
-                "ru": "",
+                "en": "Returns a list (array) of donates of specified target (post, comment, etc.), or sent by specified user (<code>from</code>), or received by specified user (<code>to</code>).<br><br>In target case this method is good for single post or comment. If loading donate lists for whole comment tree, it is better to use <code>get_donates_for_targets</code>.",
+                "ru": "Выдает список (массив) донатов, полученных за заданный target (пост, комментарий и др.), или отправленных заданным пользователем (<code>from</code>), или полученных заданных пользователем (<code>to</code>).<br><br>В случае с target метод хорош для загрузки донатов под постом или одиночным комментарием. Если загружается дерево комментариев, и для каждого нужно загрузить список донатов, то оптимальнее использовать <code>get_donates_for_targets</code>.",
                 "de": "",
                 "es": ""
             },
             "params": {
+                "uia": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "true for array of only UIA-donates. false for only GOLOS-donates.",
+                        "ru": "true, если нужен массив донатов только в UIA. false, если нужен список донатов только в токенах GOLOS.",
+                        "de": "",
+                        "es": ""
+                    }
+                },
                 "target": {
                     "type": "Object",
                     "desc": {
-                        "en": "",
-                        "ru": "",
+                        "en": "JSON-object with any field structure. Each application has its own target structure.<br>In case with Golos Blogs' and Forums' posts and comments, target contains 2 fields - <code>author</code> and <code>permlink</code>.<br>Example: <code>{\"author\":\"lex\",\"permlink\":\"zayavka-za-podgotovku-koordinaciyu-testirovanie-i-realizaciyu-23-khf\"}</code>",
+                        "ru": "JSON-объект произвольной структуры. У каждого приложения (и в каждой разновидности target) структура своя.<br>В случае с постами и комментариями, созданными через Golos Блоги или Форум, объект содержит два поля - <code>author</code> и <code>permlink</code>.<br>Пример: <code>{\"author\":\"lex\",\"permlink\":\"zayavka-za-podgotovku-koordinaciyu-testirovanie-i-realizaciyu-23-khf\"}</code>",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "from": {
+                    "type": "String",
+                    "desc": {
+                        "en": "Fill it only in case if you want to obtain donates sent by specific user, not for specific target. In that case target should be set to null.",
+                        "ru": "Заполняется только в случае, когда нужно получить не список донатов под каким-то target, а список донатов от какого-то пользователя за любые target. target в этом случае должен быть <code>null</code>.",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "to": {
+                    "type": "String",
+                    "desc": {
+                        "en": "Fill it only in case if you want to obtain donates received by specific user, not for specific target. In that case target should be set to null.",
+                        "ru": "Заполняется только в случае, когда нужно получить не список донатов под каким-то target, а список донатов какому-то пользователю за любые target. target в этом случае должен быть <code>null</code>.",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "limit": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "How much donates we should obtain. Maximum - 100.<br>Recommended for best performance - <b>20</b>.<br>If there are many donates, you should use pagination - firstly load first 100 donates (set <code>offset</code> to 0), next use \"load-more\" pattern, with incrementing <code>offset</code> each time.",
+                        "ru": "Сколько донатов получить.<br> Гарантируемый максимум - 100.<br>Рекомендуется для быстродействия - <b>20</b>.<br>Если донатов много, то нужно использовать load-more-пагинацию - сначала загрузить первые 100 (с <code>offset</code> 0), а затем по мере перелистывания пользователем подгружать еще порции, увеличивая <code>offset</code> каждый раз.",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "offset": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "Pagination. To receive first page, use <b>0</b>. See <code>limit</code>.",
+                        "ru": "Пагинация. Для получения самой первой страницы списка используйте <b>0</b>. См. <code>limit</code>.",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "join_froms": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "true, if we should join each few donates by single user and single symbol into single donate. false, if not. Usually <b>true</b> is better choice.",
+                        "ru": "true, если нужно объединять несколько донатов от одного пользователя в одной валюте - в один донат. false, если этого делать не нужно. Обычно удобнее <b>true</b>.",
                         "de": "",
                         "es": ""
                     }
@@ -1951,8 +2023,8 @@ module.exports = {
         },
         "get_donates_for_targets": {
             "desc": {
-                "en": "Displays a list of donates of specified target (post, comment, etc.)",
-                "ru": "",
+                "en": "Gets the few lists of donates of few specified targets (posts, comments, etc.)<br><br>Response is array of arrays. For each target it contains 2 arrays: GOLOS-donates and UIA-donates.",
+                "ru": "Возвращает несколько списков донатов, полученных за несколько target (посты, комментарии и др.)<br><br>Возвращаемое значение - массив из массивов. На каждый target - по 2 массива, из которых первый - это донаты в токенах GOLOS, второй - донаты в токенах UIA.",
                 "de": "",
                 "es": ""
             },
@@ -1960,8 +2032,35 @@ module.exports = {
                 "targets": {
                     "type": "Object",
                     "desc": {
-                        "en": "",
-                        "ru": "",
+                        "en": "Array of targets.<br><br>Target is a JSON-object with any field structure. Each application has its own target structure.<br>In case with Golos Blogs' and Forums' posts and comments, target contains 2 fields - <code>author</code> and <code>permlink</code>.<br><br>Example: <code>[{\"author\":\"lex\",\"permlink\":\"zayavka-za-podgotovku-koordinaciyu-testirovanie-i-realizaciyu-23-khf\"}, {\"author\":\"lex-escrow\",\"permlink\":\"zayavka-za-vzaimodeistvie-s-birzhami-voprosam-listinga-reitingov\"}]</code>",
+                        "ru": "Массив target'ов.<br><br>Каждый target - это JSON-объект произвольной структуры. У каждого приложения (и в каждой разновидности target) структура своя.<br>В случае с постами и комментариями, созданными через Golos Блоги или Форум, объект содержит два поля - <code>author</code> и <code>permlink</code>.<br><br>Пример: <code>[{\"author\":\"lex\",\"permlink\":\"zayavka-za-podgotovku-koordinaciyu-testirovanie-i-realizaciyu-23-khf\"}, {\"author\":\"lex-escrow\",\"permlink\":\"zayavka-za-vzaimodeistvie-s-birzhami-voprosam-listinga-reitingov\"}]</code>",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "limit": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "How much donates we should obtain. Maximum - 100.<br>Recommended for best performance - <b>20</b>.<br>If there are many donates, you should use pagination - firstly load first 100 donates (set <code>offset</code> to 0), next use \"load-more\" pattern, with incrementing <code>offset</code> each time.",
+                        "ru": "Сколько донатов получить.<br> Гарантируемый максимум - 100.<br>Рекомендуется для быстродействия - <b>20</b>.<br>Если донатов много, то нужно использовать load-more-пагинацию - сначала загрузить первые 100 (с <code>offset</code> 0), а затем по мере перелистывания пользователем подгружать еще порции, увеличивая <code>offset</code> каждый раз.",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "offset": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "Pagination. To receive first page, use <b>0</b>. See <code>limit</code>.",
+                        "ru": "Пагинация. Для получения самой первой страницы списка используйте <b>0</b>. См. <code>limit</code>.",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "join_froms": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "true, if we should join each few donates by single user and single symbol into single donate. false, if not. Usually <b>true</b> is better choice.",
+                        "ru": "true, если нужно объединять несколько донатов от одного пользователя в одной валюте - в один донат. false, если этого делать не нужно. Обычно удобнее <b>true</b>.",
                         "de": "",
                         "es": ""
                     }

@@ -15,7 +15,8 @@ class ParameterLabel extends Component {
         let content = title;
         if (desc) {
             content = (<OverlayTrigger trigger='click' rootClose overlay={ <Popover id='popover-positioned-right' title={title}>
-                    {getDesc(param.desc)}
+                    <div dangerouslySetInnerHTML={{ __html: desc }}>
+                    </div>
                 </Popover>}>
                 <span>{title}
                 <Glyphicon glyph='question-sign' />

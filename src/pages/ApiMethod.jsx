@@ -260,7 +260,8 @@ class ApiMethod extends Component {
                         </Panel.Title>
                     </Panel.Heading>
                     <Panel.Body>
-                        {getDesc(this.steemapi.methods[apiName][methodName].desc)}
+                        <div dangerouslySetInnerHTML={{ __html: getDesc(this.steemapi.methods[apiName][methodName].desc) }}>
+                        </div>
                     </Panel.Body>
                 </Panel>
                 </Col>

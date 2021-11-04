@@ -1,5 +1,5 @@
 
-const language = (navigator.languages && navigator.languages[0]) ||
+const language = 'ru-RU' || (navigator.languages && navigator.languages[0]) ||
                      navigator.language ||
                      navigator.userLanguage;
 
