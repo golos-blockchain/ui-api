@@ -6,6 +6,14 @@ git clone https://github.com/golos-blockchain/ui-api
 cd ui-api
 ```
 
+## Deployment
+
+```
+docker build . -t golosblockchain/ui-api
+
+docker run -d -p 8080:8080 --name ui-api golosblockchain/ui-api
+```
+
 ## Manual run
 
 ```
