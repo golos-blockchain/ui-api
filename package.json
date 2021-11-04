@@ -15,7 +15,6 @@
     "react-dom": "^16.4.2",
     "react-flags-select": "^1.1.0",
     "react-json-pretty": "^1.6.3",
-    "react-layout-components": "^3.0.6",
     "react-router-dom": "^4.1.2"
   },
   "devDependencies": {
