@@ -165,11 +165,12 @@ class Operation {
 
 class Method {
 
-    constructor(api, name, params) {
+    constructor(api, name, params, methodName) {
         this.api = api;
         this.name = name;
         this.paramNames = params;
         this.params = null;
+        this.methodName = methodName;
         if (params && params.length > 0) {
             this.params = {};
             for (let p of params) {
@@ -187,7 +188,7 @@ class Method {
     }
 
     execute() {
-        var camelName = camelCase(this.name);
+        var camelName = camelCase(this.methodName || this.name);
         var args = Array.prototype.splice.call(arguments, 0);
         //console.log("Execute " + camelName + "Async(" + JSON.stringify(args) + ")" );
         return steem.api[camelName + "Async"].apply(steem.api, args);
@@ -210,7 +211,7 @@ class SteemApi {
             if (!this.methods[m.api]) {
                 this.methods[m.api] = {};
             }
-            this.methods[m.api][m.method] = new Method(m.api, m.method, m.params);
+            this.methods[m.api][m.method] = new Method(m.api, m.method, m.params, m.method_name);
         }
     }
 

@@ -467,6 +467,14 @@ module.exports = {
                 "es": ""
             }
         },
+        "get_invite": {
+            "desc": {
+                "en": "Returns invite code data by public key.<br>If invite not exists (wrong public key, or already claimed), returns <b>null</b> instead of JSON-object.",
+                "ru": "Возвращает данные инвайт-чека по его публичному ключу.<br>Если инвайт-чек уже погашен или вовсе отсутствует, то возвращает <b>null</b> вместо JSON-объекта.",
+                "de": "",
+                "es": ""
+            }
+        },
         "get_next_scheduled_hardfork": {
             "desc": {
                 "en": "Displays the date and version of HardFork",
@@ -1739,10 +1747,42 @@ module.exports = {
         }
     },
     "private_message" : {
+        "get_contacts": {
+            "desc": {
+                "en": "Returns list of contacts of specified account.",
+                "ru": "Возвращает список контактов, то есть пользователей, с которыми беседовал данный пользователь, и некоторую информацию о беседах (какое последнее сообщение, есть ли непрочитанные и т.п.). Используется в Golos Messages для панели контактов слева.",
+            },
+            "params": {
+                "owner": {
+                    "desc": {
+                        "en": "Name of account for who contact list should be loaded",
+                        "ru": "Имя пользователя, для которого следует получить список контактов"
+                    }
+                },
+                "type": {
+                    "desc": {
+                        "en": "Currenty supported only <code>unknown</code>",
+                        "ru": "На данный момент поддерживается только <code>unknown</code>"
+                    }
+                },
+                "limit": {
+                    "desc": {
+                        "en": "How many contacts to return. Maximum is <b>100</b>.",
+                        "ru": "Сколько контактов выдать. Гарантируемый максимум - <b>100</b>."
+                    }
+                },
+                "offset": {
+                    "desc": {
+                        "en": "Pagination. For first page use <b>0</b>, another page use (N-1)*limit, there N is page number",
+                        "ru": "Пагинация. Для первой страницы - <b>0</b>, для последующих страниц - (N-1)*limit, где N - номер страницы"
+                    }
+                }
+            }
+        },
         "get_inbox": {
             "desc": {
-                "en": "",
-                "ru": "",
+                "en": "Returns <b>incoming</b> private message history in mailbox-like style. To decode them use <a href='https://github.com/golos-blockchain/libs/blob/master/golos-lib-js/docs/files/msgs.md#%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B9-%D0%BF%D1%80%D0%B8-%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D0%B8%D0%B8-%D0%BC%D0%B5%D1%81%D1%81%D0%B5%D0%BD%D0%B4%D0%B6%D0%B5%D1%80%D0%B0-%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%BA%D0%B0-%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B9' target='_blank' rel='noopener nofollow'>Golos Messenger API</a>.",
+                "ru": "Получает историю <b>входящих</b> сообщений в виде \"почты\". Расшифровать и безопасно обработать эти сообщения можно с помощью <a href='https://github.com/golos-blockchain/libs/blob/master/golos-lib-js/docs/files/msgs.md#%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B9-%D0%BF%D1%80%D0%B8-%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D0%B8%D0%B8-%D0%BC%D0%B5%D1%81%D1%81%D0%B5%D0%BD%D0%B4%D0%B6%D0%B5%D1%80%D0%B0-%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%BA%D0%B0-%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B9' target='_blank' rel='noopener nofollow'>Golos Messenger API</a>.",
                 "de": "",
                 "es": ""
             },
@@ -1750,8 +1790,8 @@ module.exports = {
                 "query": {
                     "type": "Object",
                     "desc": {
-                        "en": "",
-                        "ru": "",
+                        "en": "All params are optional. In simplest case just use <code>{}</code>.<ul> <li>select_accounts. List of accounts whose messages allowed in the list. Default is [], i.e. all accounts.</li> <li>filter_accounts. List of accounts whose messages are excluding from the list. Default is [].</li> <li>unread_only. Default is false.</li> <li>limit. How many messages to return. Default (and maximum) is 100.</li> <li>offset. Pagination. Default is 0, e.g. newest messages.</li> </ul>",
+                        "ru": "Все параметры опциональны, в простейшем варианте достаточно <code>{}</code>. <ul><li>select_accounts. Список аккаунтов, чьи сообщения должны быть в списке. По умолчанию [], это значит все аккаунты.</li> <li>filter_accounts. Список аккаунтов, сообщений которых не должно быть всписке. По умолчанию - [].</li> <li>unread_only. true, чтобы получить только непрочитанные. По умолчанию - false.</li> <li>limit. Сколько сообщений выдать. По умолчанию и гарантируемый максимум - 100.</li> <li>offset. Пагинация. С какого сообщения (от новых к старым) выдать массив сообщений. Отсчет идет от новых к старым. По умолчанию - 0, то есть выдаются последние сообщения.</li> </ul>",
                         "de": "",
                         "es": ""
                     }
@@ -1760,8 +1800,8 @@ module.exports = {
         },
         "get_outbox": {
             "desc": {
-                "en": "",
-                "ru": "",
+                "en": "Returns <b>outgoing</b> private message history in mailbox-like style. To decode them, use <a href='https://github.com/golos-blockchain/libs/blob/master/golos-lib-js/docs/files/msgs.md#%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B9-%D0%BF%D1%80%D0%B8-%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D0%B8%D0%B8-%D0%BC%D0%B5%D1%81%D1%81%D0%B5%D0%BD%D0%B4%D0%B6%D0%B5%D1%80%D0%B0-%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%BA%D0%B0-%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B9' target='_blank' rel='noopener nofollow'>Golos Messenger API</a>.",
+                "ru": "Получает историю <b>исходящих</b> сообщений в виде \"почты\". Расшифровать и безопасно обработать эти сообщения можно с помощью <a href='https://github.com/golos-blockchain/libs/blob/master/golos-lib-js/docs/files/msgs.md#%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B9-%D0%BF%D1%80%D0%B8-%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D0%B8%D0%B8-%D0%BC%D0%B5%D1%81%D1%81%D0%B5%D0%BD%D0%B4%D0%B6%D0%B5%D1%80%D0%B0-%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%BA%D0%B0-%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B9' target='_blank' rel='noopener nofollow'>Golos Messenger API</a>.",
                 "de": "",
                 "es": ""
             },
@@ -1769,8 +1809,8 @@ module.exports = {
                 "query": {
                     "type": "Object",
                     "desc": {
-                        "en": "",
-                        "ru": "",
+                        "en": "All params are optional. In simplest case just use <code>{}</code>.<ul> <li>select_accounts. List of accounts whose messages allowed in the list. Default is [], i.e. all accounts.</li> <li>filter_accounts. List of accounts whose messages are excluding from the list. Default is [].</li> <li>unread_only. Default is false.</li> <li>limit. How many messages to return. Default (and maximum) is 100.</li> <li>offset. Pagination. Default is 0, e.g. newest messages.</li> </ul>",
+                        "ru": "Все параметры опциональны, в простейшем варианте достаточно <code>{}</code>. <ul><li>select_accounts. Список аккаунтов, чьи сообщения должны быть в списке. По умолчанию [], это значит все аккаунты.</li> <li>filter_accounts. Список аккаунтов, сообщений которых не должно быть всписке. По умолчанию - [].</li> <li>unread_only. true, чтобы получить только непрочитанные. По умолчанию - false.</li> <li>limit. Сколько сообщений выдать. По умолчанию и гарантируемый максимум - 100.</li> <li>offset. Пагинация. С какого сообщения (от новых к старым) выдать массив сообщений. Отсчет идет от новых к старым. По умолчанию - 0, то есть выдаются последние сообщения.</li> </ul>",
                         "de": "",
                         "es": ""
                     }
@@ -1779,27 +1819,29 @@ module.exports = {
         },
         "get_thread": {
             "desc": {
-                "en": "Returns private message history in chat-like style. Used in Golos Messenger.",
-                "ru": "Получает историю сообщений в виде чата. Используется в Golos Messenger. Используйте этот метод для получения сообщений. А расшифровать и безопасно обработать эти сообщения можно с помощью <a href='https://github.com/golos-blockchain/libs/blob/master/golos-lib-js/docs/files/msgs.md#%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B9-%D0%BF%D1%80%D0%B8-%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D0%B8%D0%B8-%D0%BC%D0%B5%D1%81%D1%81%D0%B5%D0%BD%D0%B4%D0%B6%D0%B5%D1%80%D0%B0-%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%BA%D0%B0-%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B9' target='_blank' rel='noopener nofollow'>Golos Messenger API</a>.",
+                "en": "Returns private message history of 2 users in chat-like style. Used in Golos Messenger. To decode them use <a href='https://github.com/golos-blockchain/libs/blob/master/golos-lib-js/docs/files/msgs.md#%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B9-%D0%BF%D1%80%D0%B8-%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D0%B8%D0%B8-%D0%BC%D0%B5%D1%81%D1%81%D0%B5%D0%BD%D0%B4%D0%B6%D0%B5%D1%80%D0%B0-%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%BA%D0%B0-%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B9' target='_blank' rel='noopener nofollow'>Golos Messenger API</a>.",
+                "ru": "Получает историю сообщений между 2 пользователями в виде чата. Используется в Golos Messenger. Расшифровать и безопасно обработать эти сообщения можно с помощью <a href='https://github.com/golos-blockchain/libs/blob/master/golos-lib-js/docs/files/msgs.md#%D0%BF%D0%BE%D0%BB%D1%83%D1%87%D0%B5%D0%BD%D0%B8%D0%B5-%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B9-%D0%BF%D1%80%D0%B8-%D0%BE%D1%82%D0%BA%D1%80%D1%8B%D1%82%D0%B8%D0%B8-%D0%BC%D0%B5%D1%81%D1%81%D0%B5%D0%BD%D0%B4%D0%B6%D0%B5%D1%80%D0%B0-%D1%80%D0%B0%D1%81%D1%88%D0%B8%D1%84%D1%80%D0%BE%D0%B2%D0%BA%D0%B0-%D1%81%D0%BE%D0%BE%D0%B1%D1%89%D0%B5%D0%BD%D0%B8%D0%B9' target='_blank' rel='noopener nofollow'>Golos Messenger API</a>.",
                 "de": "",
                 "es": ""
             },
             "params": {
+                "from": {
+                    "desc": {
+                        "en": "Account name of one of 2 users.",
+                        "ru": "Имя аккаунта одного из собеседников. Рекомендуется подставлять сюда текущего авторизованного пользователя, а в <code>to</code> - его собеседника." 
+                    }
+                },
+                "to": {
+                    "desc": {
+                        "en": "Another one.",
+                        "ru": "Имя аккаунта второго собеседника." 
+                    }
+                },
                 "query": {
                     "type": "Object",
                     "desc": {
-                        "en": "All params are optional. In simplest case just use <code>{}</code>. \
-<ul> \
-<li>unread_only. Default is false.</li> \
-<li>limit. How many messages to return. Default is 100, maximum is 1000.</li> \
-<li>offset. Pagination. Default is 0, e.g. newest messages.</li> \
-</ul>",
-                        "ru": "Все параметры опциональны, в простейшем варианте достаточно <code>{}</code>. \
-<ul> \
-<li>unread_only. true, чтобы получить только непрочитанные. По умолчанию - false.</li> \
-<li>limit. Сколько сообщений выдать. По умолчанию - 100, гарантируемый максимум - 1000.</li> \
-<li>offset. Пагинация. С какого сообщения (от новых к старым) выдать массив сообщений. Отсчет идет от новых к старым. По умолчанию - 0, то есть выдаются последние сообщения.</li> \
-</ul>",
+                        "en": "All params are optional. In simplest case just use <code>{}</code>.<ul> <li>unread_only. Default is false.</li> <li>limit. How many messages to return. Default is 100, maximum is 1000.</li> <li>offset. Pagination. Default is 0, e.g. newest messages.</li> </ul>",
+                        "ru": "Все параметры опциональны, в простейшем варианте достаточно <code>{}</code>. <ul><li>unread_only. true, чтобы получить только непрочитанные. По умолчанию - false.</li> <li>limit. Сколько сообщений выдать. По умолчанию - 100, гарантируемый максимум - 1000.</li> <li>offset. Пагинация. С какого сообщения (от новых к старым) выдать массив сообщений. Отсчет идет от новых к старым. По умолчанию - 0, то есть выдаются последние сообщения.</li> </ul>",
                         "de": "",
                         "es": ""
                     }

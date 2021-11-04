@@ -129,7 +129,9 @@ class ApiMethod extends Component {
         let methodName = this.props.match.params.method_name;
         let params = this.getParameterValues();
 
-        methodName = utils.camelCase(methodName);
+        let apiName = this.props.match.params.api_name;
+        let method = this.steemapi.methods[apiName][methodName];
+        methodName = utils.camelCase(method.methodName || methodName);
 
         let jsParams = params.map(p => JSON5.stringify(p, null, 4));
         jsParams = jsParams.join(', ');
