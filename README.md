@@ -21,7 +21,7 @@ yarn install
 
 yarn build
 
-npm install -g serve
+yarn global add serve
 
 serve -s build
 ```
@@ -29,7 +29,7 @@ serve -s build
 or via pm2:
 
 ```
-npm install -g pm2
+yarn global add pm2
 
 pm2 serve build 8080 --spa
 ```
