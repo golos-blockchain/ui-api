@@ -1,18 +1,15 @@
-FROM node:16.1
+FROM node:16.1 as build
 
 WORKDIR /var/app
-RUN mkdir -p /var/app
-ADD package.json yarn.lock /var/app/
-RUN yarn install
-RUN yarn global add serve
-
 COPY . /var/app
-
+RUN yarn install
 RUN yarn build
 
-ENV PORT 8080
-ENV NODE_ENV production
+FROM node:16.1-alpine
+
+RUN yarn global add serve
+WORKDIR /var/app
+COPY --from=build /var/app/build /var/app/build
 
 EXPOSE 8080
-
 CMD [ "serve", "-l", "tcp://0.0.0.0:8080", "-s", "build" ]
