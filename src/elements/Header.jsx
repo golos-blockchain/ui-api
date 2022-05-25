@@ -1,7 +1,7 @@
 import React, { Component, } from 'react';
 import 'react-flags-select/css/react-flags-select.css';
 
-import { Navbar, FormGroup, Glyphicon, FormControl, } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, MenuItem, FormGroup, Glyphicon, FormControl, } from 'react-bootstrap';
 
 import SteemApi from '../steemjs/api';
 import './Header.css';
@@ -84,8 +84,15 @@ class Header extends Component {
                 <Navbar.Toggle />
             </Navbar.Header>
 
-            {this.state.blockchain && <Navbar.Collapse>
-                <Navbar.Form pullRight style={{ marginRight: '5px', }}>
+            <Navbar.Collapse>
+                {!this.state.blockchain && <Nav>
+                    <NavDropdown title='Инструменты'>
+                        <MenuItem href='/utils/keys'>Ключи и пароли</MenuItem>
+                        <MenuItem href='https://explorer.golos.id' target='_blank' rel='noopener noreferrer'>Golos Explorer</MenuItem>
+                        <MenuItem href='https://wiki.golos.id' target='_blank' rel='noopener noreferrer'>База знаний Golos</MenuItem>
+                    </NavDropdown>
+                </Nav>}
+                {this.state.blockchain && <Navbar.Form pullRight style={{ marginRight: '5px', }}>
                     <FormGroup>
                     <FormControl onChange={(ev) => this.onChangeBlockchain(ev.target.value)}
                         componentClass='select' placeholder={this.state.blockchain}>
@@ -99,8 +106,8 @@ class Header extends Component {
                             onChange={(ev) => this.onChangeWs(ev.target.value)}>
                         </FormControl>
                     </FormGroup>
-                </Navbar.Form>
-            </Navbar.Collapse>}
+                </Navbar.Form>}
+            </Navbar.Collapse>
         </Navbar>);
     }
 }
