@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 
 import Api from './pages/Api';
 import Method from './pages/ApiMethod';
+import Keys from './pages/utils/Keys'
 import { unregister as unregisterServiceWorker } from './registerServiceWorker';
 import './index.css';
 import api from './steemjs/api/index';
@@ -23,6 +24,7 @@ ReactDOM.render(
         <Route exact path='/' component={(props) => <Api {...props} />} />
         <Route exact path='/api' component={(props) => <Api {...props} />}/>
         <Route path='/api/:api_name/:method_name' component={(props) => <Method {...props} />}/>
+        <Route exact path='/utils/keys' component={(props) => <Keys {...props} />} />
     </Switch>
     </BrowserRouter>,
     document.getElementById('root')
