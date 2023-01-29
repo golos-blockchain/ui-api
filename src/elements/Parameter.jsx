@@ -39,10 +39,11 @@ class Parameter extends Component {
             />;
             break;
         default:
+            const def = param.default === '"by_symbol_name"' ? 'by_symbol_name' : param.default
             input = <FormGroup>
                 <ParameterLabel title={param.disp_name} param={param}/>
                 <FormControl 
-                    placeholder={param.default} 
+                    placeholder={def} 
                     type='text' 
                     name={param.name} 
                     onChange={this.props.onChange} 

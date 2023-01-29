@@ -94,7 +94,9 @@ class ApiMethod extends Component {
                     if (this.state[pname]) {
                         params.push(this.state[pname]);
                     } else if (method.params[pname].default) {
-                        params.push(method.params[pname].default);
+                        let def = method.params[pname].default
+                        def = def === '"by_symbol_name"' ? 'by_symbol_name' : def
+                        params.push(def)
                     } else {
                         params.push('');
                     }

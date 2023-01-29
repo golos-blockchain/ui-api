@@ -5,7 +5,7 @@
   "homepage": "/",
   "dependencies": {
     "bootstrap": "^3.3.7",
-    "golos-lib-js": "^0.9.13",
+    "golos-lib-js": "^0.9.50",
     "history": "^4.7.2",
     "lodash": "^4.17.15",
     "query-string": "^6.2.0",
@@ -20,7 +20,7 @@
     "react-scripts": "^2.1.5"
   },
   "scripts": {
-    "start": "react-scripts start",
+    "dev": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
