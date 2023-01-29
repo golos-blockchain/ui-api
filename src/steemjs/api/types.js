@@ -518,6 +518,15 @@ module.exports = {
                         "de": "",
                         "es": ""
                     }
+                },
+                "query={}": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "All params are optional. In simplest case just use <code>{}</code>.<ul><li>system. Also get balances in GOLOS and GBG. Default is false</li> <li>symbols. Get balances only in specific assets. Default is [], i.e. get all UIA balances.</li> <li>token_holders. String with name of token, to get all its holders. Default - not set./li></ul> Example: <code>getAccountsBalances([], {\"token_holders\": \"YMUSDT\"})</code>",
+                        "ru": "Все параметры опциональны, в простейшем варианте достаточно <code>{}</code>. <ul><li>system. Выдать также балансы в GOLOS и GBG. По умолчанию - false</li> <li>symbols. Выдать балансы только определенных токенов. По умолчанию - [], то есть выдать все UIA.</li> <li>token_holders. Строка, содержащая имя токена, чтобы получить всех владельцев данного токена. По умолчанию - не задано.</li></ul> Пример получения всех владельцев токена: <code>getAccountsBalances([], {\"token_holders\": \"YMUSDT\"})</code>",
+                        "de": "",
+                        "es": ""
+                    }
                 }
             }
         },
@@ -534,6 +543,23 @@ module.exports = {
                     "desc": {
                         "en": "symbols(strings) in array. E.g: [\"YMUSDT\"]. Warning: do not set creator if this param set.",
                         "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "sort=\"by_symbol_name\"": {
+                    "desc": {
+                        "en": "by_symbol_name, by_marketed",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "query={}": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "All params are optional. In simplest case just use <code>{}</code>.<ul><li>system. Also get balances in GOLOS and GBG. Default is false</li> </ul>",
+                        "ru": "Все параметры опциональны, в простейшем варианте достаточно <code>{}</code>. <ul><li>system. Выдать также балансы в GOLOS и GBG. По умолчанию - false</li> </ul>",
                         "de": "",
                         "es": ""
                     }
