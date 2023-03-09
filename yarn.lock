@@ -2571,9 +2571,9 @@ core-js@^2.4.0, core-js@^2.5.0, core-js@^2.5.7:
   integrity sha512-klh/kDpwX8hryYL14M9w/xei6vrv6sE8gTHDG7/T/+SEovB/G4ejwcfE/CBzO6Edsu+OETZMZ3wcX/EjUkrl5A==
 
 core-js@^3.17.3:
-  version "3.27.2"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.27.2.tgz#85b35453a424abdcacb97474797815f4d62ebbf7"
-  integrity sha512-9ashVQskuh5AZEZ1JdQWp1GqSoC1e1G87MzRqg2gIfVAQ7Qn9K+uFj8EcniUFA4P2NLZfV+TOlX1SzoKfo+s7w==
+  version "3.28.0"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.28.0.tgz#ed8b9e99c273879fdfff0edfc77ee709a5800e4a"
+  integrity sha512-GiZn9D4Z/rSYvTeg1ljAIsEqFm0LaN9gVtwDCrKL80zHtS31p9BAjmTxVqTQDMpwlMolJZOFntUG2uwyj7DAqw==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -4351,10 +4351,10 @@ globby@^6.1.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-golos-lib-js@^0.9.50:
-  version "0.9.50"
-  resolved "https://registry.yarnpkg.com/golos-lib-js/-/golos-lib-js-0.9.50.tgz#d6730a064cbc95a1ad3f2653020f44513b20500b"
-  integrity sha512-+N1O1xGBZNwXWf2eU9a3KV/6ihRXvFJP5RBuMMP+CpZ2vo/W1h/FsX6ErUJBsZwNnuovDt7Mcn60QAoz/wG5pA==
+golos-lib-js@^0.9.51:
+  version "0.9.51"
+  resolved "https://registry.yarnpkg.com/golos-lib-js/-/golos-lib-js-0.9.51.tgz#202b7af01a0637e5c713a2674cbac90f88314eda"
+  integrity sha512-nJGoY1ovq2m4SYIy4KgV0fxXNP2VemDjSLrpelbeaoGW9ShmSqkdXD50EgXanoeUv/WP6cEfS3WXVV2YazfiAQ==
   dependencies:
     abort-controller "^3.0.0"
     assert "^2.0.0"
@@ -8479,9 +8479,9 @@ readable-stream@^3.0.6:
     util-deprecate "^1.0.1"
 
 readable-stream@^3.5.0:
-  version "3.6.0"
-  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-3.6.0.tgz#337bbda3adc0706bd3e024426a286d4b4b2c9198"
-  integrity sha512-BViHy7LKeTz4oNnkcLJ+lVSL6vpiFeX6/d3oSH8zCW7UxP2onchk+vTGB143xuFjHS3deTgkKoXXymXqymiIdA==
+  version "3.6.1"
+  resolved "https://registry.yarnpkg.com/readable-stream/-/readable-stream-3.6.1.tgz#f9f9b5f536920253b3d26e7660e7da4ccff9bb62"
+  integrity sha512-+rQmrWMYGA90yenhTYsLWAsLsqVC8osOw6PKE1HDYiO0gdPeKe/xDHNzIAIn4C91YQ6oenEhfYqqc1883qHbjQ==
   dependencies:
     inherits "^2.0.3"
     string_decoder "^1.1.1"
@@ -10521,9 +10521,9 @@ ws@^5.2.0:
     async-limiter "~1.0.0"
 
 ws@^8.2.3:
-  version "8.12.0"
-  resolved "https://registry.yarnpkg.com/ws/-/ws-8.12.0.tgz#485074cc392689da78e1828a9ff23585e06cddd8"
-  integrity sha512-kU62emKIdKVeEIOIKVegvqpXMSTAMLJozpHZaJNDYqBjzlSYXQGviYwN1osDLJ9av68qHd4a2oSjd7yD4pacig==
+  version "8.12.1"
+  resolved "https://registry.yarnpkg.com/ws/-/ws-8.12.1.tgz#c51e583d79140b5e42e39be48c934131942d4a8f"
+  integrity sha512-1qo+M9Ba+xNhPB+YTWUlK6M17brTut5EXbcBaMRN5pH5dFrXz7lzz1ChFSUq3bOUl8yEvSenhHmYUNJxFzdJew==
 
 x-is-string@^0.1.0:
   version "0.1.0"
