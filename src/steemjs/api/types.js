@@ -1724,6 +1724,21 @@ module.exports = {
         }
     },
     "operation_history" : {
+        "get_nft_token_ops": {
+            "desc": {
+                "en": "Returns all operations related to specified NFT-token(-s).<br><br><b>Example:</b><pre>{ \"token_ids\": [5435], \"limit\": 1000 }</pre>",
+                "ru": "Возвращает историю операций по выбранному NFT-токену(-ам).<br><br><b>Пример:</b><pre>{ \"token_ids\": [5435], \"limit\": 1000 }</pre>",
+            },
+            "params": {
+                "query": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "<b>Example:</b><br><pre>{\n    \"token_ids\": [1243],\n    \"from\": 0,\n    \"limit\": 20\n}</pre><b>Parameters:</b><code>select_token_ids: [1, 2, 3]</code> - Token ids.<br><code>from: 0</code> - pagination. 0 - first request, 20 (if limit = 20) - second...<br><code>limit: 20</code> - max operation count in response for 1 request. Max allowed is 1000.<br><code>reverse_sort: false</code> - Reverse sorting.",
+                        "ru": "<b>Пример:</b><br><pre>{\n    \"token_ids\": [1243],\n    \"from\": 0,\n    \"limit\": 20\n}</pre><b>Параметры:</b><code>select_token_ids: [1, 2, 3]</code> - Идентификаторы токенов.<br><code>from: 0</code> - пагинация. 0 - первая страница, 20 (если limit = 20) - вторая, и т.п.<br><code>limit: 20</code> - количество операций за 1 запрос. Максимум разрешено 1000.<br><code>reverse_sort: false</code> - Обратная сортировка."
+                    }
+                }
+            }
+        },
         "get_ops_in_block": {
             "desc": {
                 "en": "Returns all operations in the block, if the parameter 'onlyVirtual' is true, then returns only the virtual operations",
@@ -2383,6 +2398,130 @@ module.exports = {
                 },
                 "fill_post": {
                     "type": "Boolean"
+                }
+            }
+        }
+    },
+    "paid_subscription_api" : {
+        "get_paid_subscribe": {
+            "desc": {
+                "en": "Returns paid subscribe if exists. Or object with empty fields.<br><br><b>Example:</b><br>query:<br><pre>{ \"author\": \"lex\", \"oid\": { \"app\": \"golos-blog\", \"name\": \"blog\", \"version\": 1 }, \"subscriber\": \"xel\" }</pre>",
+                "ru": "Возвращает платную подписку пользователя **subscriber** на такую-то сущность `oid` для подписки пользователя <code>author</code>. Если подписки нет, возвращает объект с пустыми полями.<br><br><b>Пример:</b><br>query:<br><pre>{ \"author\": \"lex\", \"oid\": { \"app\": \"golos-blog\", \"name\": \"blog\", \"version\": 1 }, \"subscriber\": \"xel\" }</pre>",
+            },
+            "params": {
+                "query={}": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "<b>Parameters:</b><br><code>author: 'lex'</code> - paid subscribe author.<br><code>oid: { app: 'golos-blog', name: 'blog', version: 1 }</code> - paid subscribe id.<br><code>subscriber: 'xel'</code> - Subscriber.",
+                        "ru": "<b>Параметры:</b><br><code>author: 'lex'</code> - автор платной подписки.<br><code>oid: { app: 'golos-blog', name: 'blog', version: 1 }</code> - идентификатор платной подписки.<br><code>subscriber: 'xel'</code> - Предполагаемый платный подписчик"
+                    }
+                }
+            }
+        },
+        "get_paid_subscribers": {
+            "desc": {
+                "en": "Returns list of paid subscibers if <code>oid</code> by <code>author</code>. If no - returns empty array.<br><br><b>Example:</b><br>query:<br><pre>{ \"author\": \"lex\", \"oid\": { \"app\": \"golos-blog\", \"name\": \"blog\", \"version\": 1 }, \"limit\": 100 }</pre>",
+                "ru": "Возвращает список платных подписчиков заданной сущности <code>oid</code> для подписки пользователя <code>author</code>. Если подписок нет, возвращает пустой массив.<br><br><b>Пример:</b><br>query:<br><pre>{ \"author\": \"lex\", \"oid\": { \"app\": \"golos-blog\", \"name\": \"blog\", \"version\": 1 }, \"limit\": 100 }</pre>",
+            },
+            "params": {
+                "query={}": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "<b>Parameters:</b><br><code>author: 'lex'</code> - author.<br><code>oid: { app: 'golos-blog', name: 'blog', version: 1 }</code> - id of paid subscription.<br><code>from: ''</code> - Pagination. First request - empty string, next - name of last subscriber from previous request response.<br><code>limit: 20</code> - Max paid subscribers count per request. Max allowed is 100.<br><code>sort: 'by_name'</code> - Sorting. by_date<br><code>state: 'active_inactive'</code> - Get active and inactive subscribers. active_only, inactive_only",
+                        "ru": "<b>Параметры:</b><br><code>author: 'lex'</code> - автор платной подписки.<br><code>oid: { app: 'golos-blog', name: 'blog', version: 1 }</code> - идентификатор платной подписки.<br><code>from: ''</code> - Пагинация. При первом запросе пустая строка, далее - имя последнего подписчика из предыдущего запроса.<br><code>limit: 20</code> - Макс. кол-во платных подписок за 1 запрос. Разрешено максимум 100.<br><code>sort: 'by_name'</code> - Сортировка. by_date<br><code>state: 'active_inactive'</code> - Получать как активных, так и неактивных подписчиков. active_only, inactive_only"
+                    }
+                }
+            }
+        },
+        "get_paid_subscription_options": {
+            "desc": {
+                "en": "Returns paid subscription if exists. Or object with empty fields.<br><br><b>Example:</b><br>query:<br><pre>{ \"author\": \"lex\", \"oid\": { \"app\": \"golos-blog\", \"name\": \"blog\", \"version\": 1 } }</pre>",
+                "ru": "Возвращает информацию об условиях платной подписки <code>oid</code> автора <code>author</code>. Если подписки нет, возвращает объект с пустыми полями.<br><br><b>Пример:</b><br>query:<br><pre>{ \"author\": \"lex\", \"oid\": { \"app\": \"golos-blog\", \"name\": \"blog\", \"version\": 1 } }</pre>",
+            },
+            "params": {
+                "query={}": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "<b>Parameters:</b><br><code>author: 'lex'</code> - paid subscribe author.<br><code>oid: { app: 'golos-blog', name: 'blog', version: 1 }</code> - paid subscribe id.",
+                        "ru": "<b>Параметры:</b><br><code>author: 'lex'</code> - автор платной подписки.<br><code>oid: { app: 'golos-blog', name: 'blog', version: 1 }</code> - идентификатор платной подписки."
+                    }
+                }
+            }
+        },
+        "get_paid_subscriptions": {
+            "desc": {
+                "en": "Returns paid subscribes of <code>subscriber</code> user. If no - returns empty array.<br><br><b>Example:</b><br>query:<br><pre>{ \"subscriber\": \"lex\", \"limit\": 100, \"select_oid\": { \"app\": \"golos-blog\", \"name\": \"blog\", \"version\": 1 } }</pre>",
+                "ru": "Возвращает список платных подписок пользователя <code>subscriber</code> (\"на что я подписан?\"). Если подписок нет, возвращает пустой массив.<br><br><b>Пример:</b><br>query:<br><pre>{ \"subscriber\": \"lex\", \"limit\": 100, \"select_oid\": { \"app\": \"golos-blog\", \"name\": \"blog\", \"version\": 1 } }</pre>",
+            },
+            "params": {
+                "query={}": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "<b>Parameters:</b><br><code>subscriber: 'lex'</code> - subscriber.<br><code>start_author: ''</code> - Pagination. 1st request - empty, next - author of last subscribe in previous response.<br><code>start_oid: { app: '', name: '', version: 1 }</code> - also need for pagination. In this example - empty, for first request.<br><code>limit: 20</code> - Max subscribes count for 1 request. Maximum is 100.<br><code>sort: 'by_author_id'</code> - Sorting. by_date<br><code>state: 'active_inactive'</code> - State of subscribes. active_only, inactive_only<br><code>select_items: [['alice', {app: 'test', name: 'test', version: 1}]]</code> - Get only specified subscribes.<br><code>select_oid</code> - Get subscribes with this oid, but different authors (e.g. all sponsored authors in Golos Blogs are have same oid)",
+                        "ru": "<b>Параметры:</b><br><code>subscriber: 'lex'</code> - подписчик.<br><code>start_author: ''</code> - Пагинация. Первый запрос - пусто, далее - автор последней подписки из предыдущего запроса.<br><code>start_oid: { app: '', name: '', version: 1 }</code> - также необходимо для пагинации. В данном примере - пустое, для первого запроса.<br><code>limit: 20</code> - Макс. кол-во подписок за 1 запрос. Максимум 100.<br><code>sort: 'by_author_id'</code> - Сортировка. by_date<br><code>state: 'active_inactive'</code> - Статус подписок. active_only, inactive_only<br><code>select_items: [['alice', {app: 'test', name: 'test', version: 1}]]</code> - Позволяет получать конкретные подписки.<br><code>select_oid</code> - Позволяет получать подписки на конкретный oid, но разных авторов (напр. у всех спонсируемых авторов в Golos Blogs один и тот же oid_"
+                    }
+                }
+            }
+        },
+        "get_paid_subscriptions_by_author": {
+            "desc": {
+                "en": "Returns paid subscriptions by <code>author</code>, or empty array.<br><br><b>Пример:</b><br>query:<br><pre>{ \"author\": \"lex\", \"limit\": 100 }</pre>",
+                "ru": "Получает платные подписки автора <code>author</code>. Если подписок нет - пустой массив.<br><br><b>Пример:</b><br>query:<br><pre>{ \"author\": \"lex\", \"limit\": 100 }</pre>",
+            },
+            "params": {
+                "query={}": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "<b>Parameters:</b><br><code>author: 'lex'</code> - paid subscriptions author.<br><code>from: { app: '', name: '', version: 1 }</code> - pagination. First request - empty as in this example. Next - oid of last subscription of previous request.<br><code>limit: 20</code> - Max count per request. Allowed maximum is 100",
+                        "ru": "<b>Параметры:</b><br><code>author: 'lex'</code> - автор платных подписок.<br><code>from: { app: '', name: '', version: 1 }</code> - пагинация. При первом запросе оставить пустым как в данном примере. Далее - oid последней подписки из предыдущего запроса.<br><code>limit: 20</code> - Макс. кол-во платных подписок в одном ответе. Допустимый максимум 100"
+                    }
+                }
+            }
+        },
+    },
+    "nft_api" : {
+        "get_nft_collections": {
+            "desc": {
+                "en": "Returns list of all NFT-collections, or specified one/ones, or collections by specified creator.<br><br><b>All collections:</b><br>query: <pre>{ \"limit\": 100 }</pre><br><b>Collections of specified creator:</b><br><pre>{ \"creator\": \"lex\", \"limit\": 100 }</pre><br><b>Specified collections:</b><br><pre>{ \"select_names\": [\"CATS\", \"DOGS\"] }</pre>",
+                "ru": "Возвращает список всех NFT-коллекций в системе, либо выбранную коллекцию/коллекции, либо коллекции выбранного владельца.<br><br><b>Все коллекции:</b><br>query: <pre>{ \"limit\": 100 }</pre><br><b>Коллекции конкретного владельца:</b><br><pre>{ \"creator\": \"lex\", \"limit\": 100 }</pre><br><b>Конкретные коллекции:</b><br><pre>{ \"select_names\": [\"CATS\", \"DOGS\"] }</pre>",
+            },
+            "params": {
+                "query={}": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "<b>Parameters:</b><br><code>creator: 'cyberfounder'</code> - select collections only by this owner. Can be empty.<br><code>start_name: ''</code> - pagination. Collection name from which start the list. First request - it is empty. Next requests - it is name of last collection of previous request.<br><code>limit: 20</code> - Max count of collections for single request. Maximum allowed if 100.<br><code>sort: 'by_created'</code> Sorting of NFT-collections. by_last_price, by_token_count, by_market_depth, by_market_asks, by_market_volume<br><code>reverse_sort: false</code> - Reverse sort.",
+                        "ru": "<b>Параметры:</b><br><code>creator: 'cyberfounder'</code> - выбрать коллекции этого владельца. Оставьте пустым, если нужны любые коллекции.<br><code>start_name: ''</code> - пагинация. Имя коллекции, с которой следует начать выборку. При первом запросе должен быть пустым, а при каждом последующем - имя последней коллекции из предыдущего запроса.<br><code>limit: 20</code> - Макс. кол-во коллекций за 1 запрос. Максимум 100.<br><code>sort: 'by_created'</code> Сортировка коллекций. by_last_price, by_token_count, by_market_depth, by_market_asks, by_market_volume<br><code>reverse_sort: false</code> - Сортировать в обратном направлении."
+                    }
+                }
+            }
+        },
+        "get_nft_orders": {
+            "desc": {
+                "en": "Returns list of all NFT-orders (selling or buying NFT-tokens), or orders by  specified owner, or orders in specified NFT-collection, or 1 specified order by <code>order_id</code>.<br><br><b>All CATS orders:</b><br>query: <pre>{ \"select_collections\": [\"CATS\"], \"limit\": 100 }</pre><br><b>Orders by owner:</b><br><pre>{ \"owner\": \"lex\", \"select_collections\": [\"CATS\"], \"limit\": 100 }</pre><br><b>Specified order:</b><br><pre>{ \"start_order_id\": 543, \"limit\": 1 }</pre>",
+                "ru": "Возвращает список всех NFT-ордеров в системе (ордеров на продажу/покупку NFT-токенов), либо ордера заданного владельца токенов, либо ордера NFT-токенов заданной коллекции, либо 1 конкретный ордер по <code>order_id</code>.<br><br><b>Все ордеры с токенами CATS:</b><br>query: <pre>{ \"select_collections\": [\"CATS\"], \"limit\": 100 }</pre><br><b>Ордеры конкретного владельца:</b><br><pre>{ \"owner\": \"lex\", \"select_collections\": [\"CATS\"], \"limit\": 100 }</pre><br><b>Конкретный ордер:</b><br><pre>{ \"start_order_id\": 543, \"limit\": 1 }</pre>",
+            },
+            "params": {
+                "query={}": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "<b>Parameters:</b><br><code>owner: 'alice'</code> - get orders only by this owner. Can be empty.<br><code>start_order_id: 0</code> - pagination. 0 if first request, every next request - order_id from last order from previous request.<br><code>limit: 20</code> - Pagination. Max order count per 1 request. Max allowed is 100.<br><code>select_collections: []</code> - select orders only from these collections.<br><code>collection_limit: 1</code> - Select only 1 order from each select_collections.<br><code>filter_creators: []</code> - Ignore orders from collections by these creators.<code>filter_owners: []</code> - Ignore orders by these order owners. <code>filter_token_ids: []</code> - Filter ID of tokens to ignore.<code>filter_names: []</code> - Collection names to ignore orders of them.<br><code>filter_order_ids: []</code> - id orders to ignore.<br><code>type: 'selling'</code> - only selling. Or <code>'buying'</code> - only buying, <code>'both'</code> - any.<br><code>sort: 'by_name'</code> - Sorting. by_created, by_price<br><code>reverse_sort: false</code> - Reversed order of sorting.",
+                        "ru": "<b>Параметры:</b><br><code>owner: 'alice'</code> - получить ордеры только этого владельца. Может быть пустым.<br><code>start_order_id: 0</code> - пагинация. 0 при первом запросе, при каждом последующем - order_id последнего ордера из предыдущего запроса.<br><code>limit: 20</code> - Пагинация. Макс. кол-во ордеров за 1 запрос. Максимум 100.<br><code>select_collections: []</code> - выбирает ордера только из этих коллекций.<br><code>collection_limit: 1</code> - Задается, если из каждой коллекции (select_collections) нужно выбрать только 1 ордер.<br><code>filter_creators: []</code> - Владельцы коллекций, чьи ордеры следует исключить из списка.<code>filter_owners: []</code> - Владельцы токенов, чьи ордеры следует исключить из списка. <code>filter_token_ids: []</code> - ID токенов, которые следует исключить из списка.<code>filter_names: []</code> - Имена коллекций, ордеры из которых следует исключить из списка.<br><code>filter_order_ids: []</code> - id ордеров, которые следует исключить из списка.<br><code>type: 'selling'</code> - ордера только на продажу. Или <code>'buying'</code> - только на покупку, <code>'both'</code> - любые.<br><code>sort: 'by_name'</code> - Сортировка. by_created, by_price<br><code>reverse_sort: false</code> - Reversed order of sorting."
+                    }
+                }
+            }
+        },
+        "get_nft_tokens": {
+            "desc": {
+                "en": "Returns list of all NFT-tokens, or tokens by specified tokens owner, or tokens from specified collection, or specified tokens.",
+                "ru": "Возвращает список всех NFT-токенов в системе, либо токены заданного владельца токенов, либо токены из заданной коллекции, либо конкретные токены по id.<br><br><b>Все токены CATS:</b><br>query: <pre>{ \"select_collections\": [\"CATS\"], \"limit\": 100 }</pre><br><b>Все токены владельца:</b><pre>{ \"owner\": \"lex\", \"limit\": 100 }</pre>",
+            },
+            "params": {
+                "query={}": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "<b>Parameters:</b><br><code>owner: 'alice'</code> - get tokens only of specified owner. Can be empty.<br><code>start_token_id: 0</code> - pagination. 0 if first request, every next - token_id of last token of previous request.<br><code>limit: 20</code> - Pagination. Max token count per 1 request. Max is 100.<br><code>select_collections: []</code> - select tokens only from these collections.<br><code>collection_limit: 1</code> - Select only 1 token from each of select_collections.<br><code>select_token_ids: []</code> - Select only specified tokens by token_id.<br><code>filter_creators: []</code> - Ignore tokens from collections by these creators.<code>filter_token_ids: []</code> - ID of tokens to ignore.<code>filter_names: []</code> - Collection names to ignore tokens from them.<br><code>state: 'any_not_burnt'</code> - All tokens excluding burnt ones. 'selling_one' - only selling tokens, or 'not_selling_one' - only not selling tokens; 'burnt_only', 'any'<br><code>sort: 'by_name'</code> - Sorting. by_issued, by_last_update, by_last_price<br><code>reverse_sort: false</code> - Reverse order of sorting.<br><code>illformed: 'sort_down'</code> - Sort down tokens without title/image. 'nothing', 'ignore'<br><code>selling_sorting: 'nothing'</code> - Do not sort up selling tokens. 'sort_up', 'sort_up_by_price'<br><code>sorting_priority: 'selling'</code> Or illformed. Which of these sortings is more important.",
+                        "ru": "<b>Параметры:</b><br><code>owner: 'alice'</code> - получить токены только этого владельца. Может быть пустым.<br><code>start_token_id: 0</code> - пагинация. 0 при первом запросе, при каждом последующем - token_id последнего токена из предыдущего запроса.<br><code>limit: 20</code> - Пагинация. Макс. кол-во токенов за 1 запрос. Максимум 100.<br><code>select_collections: []</code> - выбирает токены только из этих коллекций.<br><code>collection_limit: 1</code> - Задается, если из каждой коллекции (select_collections) нужно выбрать только 1 токен.<br><code>select_token_ids: []</code> - Выбрать только конкретные токены по token_id.<br><code>filter_creators: []</code> - Владельцы коллекций, чьи токены следует исключить из списка.<br><code>filter_token_ids: []</code> - ID токенов, которые следует исключить из списка.<br><code>filter_names: []</code> - Имена коллекций, токены из которых следует исключить из списка.<br><code>state: 'any_not_burnt'</code> - Получить все токены, кроме сожженных. 'selling_one' - только токены которые выставлены на продажу, или 'not_selling_one' - только которые не выставлены; 'burnt_only', 'any'<br><code>sort: 'by_name'</code> - Сортировка. by_issued, by_last_update, by_last_price<br><code>reverse_sort: false</code> - Обратный порядок сортировки.<br><code>illformed: 'sort_down'</code> - Отображать в самом конце токены у которых нет заголовка/картинки. 'nothing', 'ignore'<br><code>selling_sorting: 'nothing'</code> - Не выдавать токены, которые сейчас продаются, впереди всех остальных. 'sort_up', 'sort_up_by_price'<br><code>sorting_priority: 'selling'</code> Или illformed. Какая из этих сортировок приоритетна. То есть если у токена нет картинки, но он продается, то все равно выводить его первее других."
+                    }
                 }
             }
         }
