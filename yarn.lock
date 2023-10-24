@@ -2572,9 +2572,9 @@ core-js@^2.4.0, core-js@^2.5.0, core-js@^2.5.7:
   integrity sha512-klh/kDpwX8hryYL14M9w/xei6vrv6sE8gTHDG7/T/+SEovB/G4ejwcfE/CBzO6Edsu+OETZMZ3wcX/EjUkrl5A==
 
 core-js@^3.17.3:
-  version "3.32.2"
-  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.32.2.tgz#172fb5949ef468f93b4be7841af6ab1f21992db7"
-  integrity sha512-pxXSw1mYZPDGvTQqEc5vgIb83jGQKFGYWY76z4a7weZXUolw3G+OvpZqSRcfYOoOVUQJYEPsWeQK8pKEnUtWxQ==
+  version "3.33.0"
+  resolved "https://registry.yarnpkg.com/core-js/-/core-js-3.33.0.tgz#70366dbf737134761edb017990cf5ce6c6369c40"
+  integrity sha512-HoZr92+ZjFEKar5HS6MC776gYslNOKHt75mEBKWKnPeFDpZ6nH5OeF3S6HFT1mUAUZKrzkez05VboaX8myjSuw==
 
 core-util-is@1.0.2, core-util-is@~1.0.0:
   version "1.0.2"
@@ -3012,9 +3012,9 @@ default-require-extensions@^1.0.0:
     strip-bom "^2.0.0"
 
 define-data-property@^1.0.1:
-  version "1.1.0"
-  resolved "https://registry.yarnpkg.com/define-data-property/-/define-data-property-1.1.0.tgz#0db13540704e1d8d479a0656cf781267531b9451"
-  integrity sha512-UzGwzcjyv3OtAvolTj1GoyNYzfFR+iqbGjcnBEENZVCpM4/Ng1yhGNvS3lR/xDS74Tb2wGG9WzNSNIOS9UVb2g==
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/define-data-property/-/define-data-property-1.1.1.tgz#c35f7cd0ab09883480d12ac5cb213715587800b3"
+  integrity sha512-E7uGkTzkk1d0ByLeSc6ZsFS79Axg+m1P/VsgYsxHgiuc3tFSj+MjMIwe90FC4lOAZzNBdY7kkO2P2wKdsQ1vgQ==
   dependencies:
     get-intrinsic "^1.2.1"
     gopd "^1.0.1"
@@ -4366,10 +4366,10 @@ globby@^6.1.0:
     pify "^2.0.0"
     pinkie-promise "^2.0.0"
 
-golos-lib-js@^0.9.58:
-  version "0.9.58"
-  resolved "https://registry.yarnpkg.com/golos-lib-js/-/golos-lib-js-0.9.58.tgz#a2f7de0e59014f79df14fa3834cda375cf018bb3"
-  integrity sha512-Tr3CnYUcyhf2aK9g3ox1IvN6Y7RT24KNNZ/DdV5sx8F7AkdWRBjmkE25+HCO4Qqusoo6/7XzDr4MVnrpKFgg8A==
+golos-lib-js@^0.9.60:
+  version "0.9.60"
+  resolved "https://registry.yarnpkg.com/golos-lib-js/-/golos-lib-js-0.9.60.tgz#abf7e88499954312c817ebc38532e8e8d0451cbd"
+  integrity sha512-9UlH8OLTZj70godojecYTHIJ/6X+YW80zDVTYEq4qGDjZFlIAyczqu4UHlwZIxOtlZoyFMFtxMonWEXkw3nnPg==
   dependencies:
     abort-controller "^3.0.0"
     assert "^2.0.0"
