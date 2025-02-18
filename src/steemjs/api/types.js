@@ -499,6 +499,15 @@ module.exports = {
                         "de": "Kontennamen als ein Array",
                         "es": ""
                     }
+                },
+                "query={}": {
+                    "type": "Object",
+                    "desc": {
+                        "en": "",
+                        "ru": "",
+                        "de": "",
+                        "es": ""
+                    }
                 }
             }
         },
@@ -607,6 +616,15 @@ module.exports = {
                     "desc": {
                         "en": "number of results",
                         "ru": "количество результатов",
+                        "de": "",
+                        "es": ""
+                    }
+                },
+                "includeFrozen=false": {
+                    "type": "Boolean",
+                    "desc": {
+                        "en": "include frozen accounts",
+                        "ru": "включая замороженные аккаунты",
                         "de": "",
                         "es": ""
                     }

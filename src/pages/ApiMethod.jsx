@@ -91,15 +91,20 @@ class ApiMethod extends Component {
                         value = null;
                     }
                 } else {
+                    let value
                     if (this.state[pname]) {
-                        params.push(this.state[pname]);
+                        value = this.state[pname]
                     } else if (method.params[pname].default) {
                         let def = method.params[pname].default
                         def = def === '"by_symbol_name"' ? 'by_symbol_name' : def
-                        params.push(def)
+                        value = def
                     } else {
-                        params.push('');
+                        value = ''
                     }
+                    if (method.params[pname].type === 'Boolean') {
+                        value = value === 'true'
+                    }
+                    params.push(value)
                 }
             }
         }
